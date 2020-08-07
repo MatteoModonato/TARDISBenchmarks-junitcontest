@@ -76,4 +76,36 @@ if [ -d jsoup ]; then
 	mkdir jsoup/target/classes/settings; mv RunFiles/RunJsoup.class $_ && echo "[SHELL SCRIPT] Moved RunRunJsoup.class to $_" || echo "[SHELL SCRIPT] Failed"
 fi
 
+#Bcel
+if [ -d bcel-6.0-src ]; then
+	mkdir bcel-6.0-src/target/classes/settings; mv RunFiles/RunBcel.class $_ && echo "[SHELL SCRIPT] Moved RunBcel.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Gson
+if [ -d gson ]; then
+	mkdir gson/gson/target/classes/settings; mv RunFiles/RunGson.class $_ && echo "[SHELL SCRIPT] Moved RunGson.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Image
+if [ -d commons-imaging ]; then
+	mkdir commons-imaging/target/classes/settings; mv RunFiles/RunImage.class $_ && echo "[SHELL SCRIPT] Moved RunImage.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Jxpath
+if [ -d commons-jxpath-1.3-src ]; then
+	mkdir commons-jxpath-1.3-src/target/classes/settings; mv RunFiles/RunJxpath.class $_ && echo "[SHELL SCRIPT] Moved RunJxpath.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#La4j
+if [ -d la4j-0.6.0 ]; then
+	mkdir la4j-0.6.0/target/classes/settings; mv RunFiles/RunLa4j.class $_ && echo "[SHELL SCRIPT] Moved RunLa4j.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Re2j
+if [ -d re2j ]; then
+	mkdir re2j/target/classes/settings; mv RunFiles/RunRe2j.class $_ && echo "[SHELL SCRIPT] Moved RunRe2j.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#TODO Launch TARDIS...
+
 echo "[SHELL SCRIPT] ENDING at $(date)"
