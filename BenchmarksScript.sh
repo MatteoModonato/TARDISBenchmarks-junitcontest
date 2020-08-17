@@ -5,7 +5,7 @@ echo "[SHELL SCRIPT] STARTING at $(date)"
 #Unzip all benchmarks?
 echo "[SHELL SCRIPT] Unzip all benchmarks? [y]es , [n]o"
 read UnzipBenchmarks
-if [ $UnzipBenchmarks = "y" ]; then
+if [ $UnzipBenchmarks == "y" ]; then
 	echo "[SHELL SCRIPT] Unzipping all benchmarks..."
 	for z in *.zip
 	do
@@ -20,12 +20,14 @@ fi
 #Compile all benchmarks?
 echo "[SHELL SCRIPT] Compile all benchmarks? [y]es , [n]o"
 read CompileBenchmarks
-if [ $CompileBenchmarks = "y" ]; then
+if [ $CompileBenchmarks == "y" ]; then
 	echo "[SHELL SCRIPT] Compiling all benchmarks..."
 	for d in */
 	do
-    	cd $d && mvn compile && echo "[SHELL SCRIPT] $d compiled" || echo "[SHELL SCRIPT] $d: Failed"
-    	cd .. 
+		if [ $d != "RunFiles/" ]; then
+    		cd $d && mvn compile && echo "[SHELL SCRIPT] $d compiled" || echo "[SHELL SCRIPT] $d: Failed"
+    		cd .. 
+    	fi
 	done
 fi
 
