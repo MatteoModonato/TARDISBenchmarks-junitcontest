@@ -108,6 +108,11 @@ if [ -d re2j ]; then
 	mkdir re2j/target/classes/settings; mv RunFiles/RunRe2j.class $_ && echo "[SHELL SCRIPT] Moved RunRe2j.class to $_" || echo "[SHELL SCRIPT] Failed"
 fi
 
+#Okhttp
+if [ -d okhttp ]; then
+	mkdir okhttp/okhttp/target/classes/settings; mv RunFiles/RunOkhttp.class $_ && echo "[SHELL SCRIPT] Moved RunOkhttp.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
 #TODO Launch TARDIS...
 
 echo "[SHELL SCRIPT] ENDING at $(date)"
