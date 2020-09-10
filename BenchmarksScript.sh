@@ -113,6 +113,16 @@ if [ -d okhttp ]; then
 	mkdir okhttp/okhttp/target/classes/settings; mv RunFiles/RunOkhttp.class $_ && echo "[SHELL SCRIPT] Moved RunOkhttp.class to $_" || echo "[SHELL SCRIPT] Failed"
 fi
 
+#Fescar
+if [ -d fescar ]; then
+	mkdir fescar/core/target/classes/settings; mv RunFiles/RunFescar.class $_ && echo "[SHELL SCRIPT] Moved RunFescar.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Spoon
+if [ -d spoon ]; then
+	mkdir spoon/target/classes/settings; mv RunFiles/RunSpoon.class $_ && echo "[SHELL SCRIPT] Moved RunSpoon.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
 #TODO Launch TARDIS...
 
 echo "[SHELL SCRIPT] ENDING at $(date)"
