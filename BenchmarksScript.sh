@@ -11,6 +11,8 @@ if [ $UnzipBenchmarks == "y" ]; then
 	do
 		if [ $z == "zxingSplit.zip" ]; then
 			cat zxingSplit.z01 zxingSplit.zip > zxing_joined.zip && unzip zxing_joined.zip && echo "[SHELL SCRIPT] $z unzipped" || echo "[SHELL SCRIPT] $z: Failed"
+		elif [ $z == "pdfboxSplit.zip" ]; then
+			zip -F pdfboxSplit.zip --out pdfbox.zip && unzip pdfbox.zip && echo "[SHELL SCRIPT] $z unzipped" || echo "[SHELL SCRIPT] $z: Failed"
 		else
 			unzip $z && echo "[SHELL SCRIPT] $z unzipped" || echo "[SHELL SCRIPT] $z: Failed"
 		fi
@@ -121,6 +123,16 @@ fi
 #Spoon
 if [ -d spoon ]; then
 	mkdir spoon/target/classes/settings; mv RunFiles/RunSpoon.class $_ && echo "[SHELL SCRIPT] Moved RunSpoon.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Guava
+if [ -d guava ]; then
+	mkdir guava/guava/target/classes/settings; mv RunFiles/RunGuava.class $_ && echo "[SHELL SCRIPT] Moved RunGuava.class to $_" || echo "[SHELL SCRIPT] Failed"
+fi
+
+#Pdfbox
+if [ -d pdfbox ]; then
+	mkdir pdfbox/pdfbox/target/classes/settings; mv RunFiles/RunPdfbox.class $_ && echo "[SHELL SCRIPT] Moved RunPdfbox.class to $_" || echo "[SHELL SCRIPT] Failed"
 fi
 
 #TODO Launch TARDIS...
