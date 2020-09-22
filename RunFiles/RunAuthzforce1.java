@@ -84,6 +84,7 @@ public class RunAuthzforce1 {
 		o.setGlobalTimeBudgetUnit(timeBudgetTimeUnit);
 		//o.setThrottleFactorEvosuite(1.0f);
 		o.setEvosuiteTimeBudgetDuration(600);
+        o.setMaxSimpleArrayLength(400_000);
 	
 		final Main m = new Main(o);
 		m.start();
