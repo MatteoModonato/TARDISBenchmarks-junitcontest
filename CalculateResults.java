@@ -4,13 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class CalculateResults {
 
 	public static void main(String[] args) {
 
-		//args[0]: Tardis log path, args[1]: Output csv path, args[3]: Benckmark
+		//args[0]: Tardis log path, args[1]: Output csv path, args[2]: Benckmark
 		String path = args[0];
 		File file = new File(path);
 		String pathOut = args[1];
@@ -23,6 +27,11 @@ public class CalculateResults {
 		int noAlternative = 0;
 		int lastIndex= 0;
 		String coverage = null;
+		String start = null;
+		String end = null;
+		Date dateStart = null;
+		Date dateEnd = null;
+		long executionTime = 0;
 
 		try {
 			Scanner scanner = new Scanner(file);
@@ -49,9 +58,34 @@ public class CalculateResults {
 					lastIndex = lineNum;
 					coverage = line.substring(28).replace(",", " -");
 				}
+				if (line.contains("[MAIN    ] Starting at")) {
+					start = line.substring(23, 42);
+				}
+				if (line.contains("[MAIN    ] Ending at")) {
+					end = line.substring(21, 40);
+				}
 			}
 		} catch(FileNotFoundException e) { 
 			//handle this
+		}
+
+		if (end != null) {
+			try {
+				dateStart = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(start);
+				dateEnd = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(end);
+			} catch (ParseException e) {
+				//handle this
+			}
+			//round up-down
+			if (getDateDiff(dateStart, dateEnd, TimeUnit.SECONDS)%60 > 30) {
+				executionTime = getDateDiff(dateStart, dateEnd, TimeUnit.MINUTES)+1;
+			}
+			else {
+				executionTime = getDateDiff(dateStart, dateEnd, TimeUnit.MINUTES);
+			}
+		}
+		else {
+			executionTime = -1;
 		}
 
 		try(FileWriter fw = new FileWriter(fileOut, true);
@@ -61,17 +95,22 @@ public class CalculateResults {
 				coverage = "/";
 			}
 			if (fileOut.length()==0) { 
-				out.println("Benchmark,TARDIS seed tests,Tot analyzed PC,TARDIS tests,InfeasiblePC,TotAlternativePC,JBSE Coverage");
-				out.println(benchmark+","+seedTest+","+((test-seedTest)+infeasible)+","+(test-seedTest)+","+infeasible+","+(alternative-noAlternative)+","+coverage);
+				out.println("Benchmark,TARDIS seed tests,Tot analyzed PC,TARDIS tests,InfeasiblePC,TotAlternativePC,JBSE Coverage,Execution Time");
+				out.println(benchmark+","+seedTest+","+((test-seedTest)+infeasible)+","+(test-seedTest)+","+infeasible+","+(alternative-noAlternative)+","+coverage+","+executionTime);
 			}
 			else {
-				out.println(benchmark+","+seedTest+","+((test-seedTest)+infeasible)+","+(test-seedTest)+","+infeasible+","+(alternative-noAlternative)+","+coverage);
+				out.println(benchmark+","+seedTest+","+((test-seedTest)+infeasible)+","+(test-seedTest)+","+infeasible+","+(alternative-noAlternative)+","+coverage+","+executionTime);
 			}
 		} 
 		catch (IOException e) {
 			//handle this
 		}
 
+	}
+
+	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+		long diffInMillies = date2.getTime() - date1.getTime();
+		return timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
 
 }
