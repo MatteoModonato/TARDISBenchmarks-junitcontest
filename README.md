@@ -1,11 +1,7 @@
 # TARDISBenchmarks-junitcontest
 
 ### Important information:
-Satisfy the following requirements to have the repository ready to use:
-1. Install [TARDIS](https://github.com/pietrobraione/tardis) in *"/home/ubuntu/tardisFolder/tardisProva/tardis"* folder
-2. Run `git clone` under *"/home/ubuntu/tardisFolder/tardisExperiments/bin"* folder
-
-If you don't respect these paths make sure you edit the TARDIS configuration files (RunFiles folder) to reflect the paths where you installed the code.
+Make sure you edit the paths indicated in the first comment lines of **TardisLauncher.sh** and **CompileAndMove.sh** to have the repository ready to use ([TARDIS](https://github.com/pietrobraione/tardis) run files are automatically updated by scripts).
 
 
 ### How to use the repository:

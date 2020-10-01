@@ -1,11 +1,19 @@
 #!/bin/sh
 
+# Edit TARDIS_HOME_PATH, GRADLE_REPO_PATH and TOOLSJAR_PATH to reflect the paths where you installed the code:
+# TARDIS_HOME_PATH: Folder where TARDIS is installed
+# GRADLE_REPO_PATH: Gradle folder
+# TOOLSJAR_PATH: 	tools.jar path
+TARDIS_HOME_PATH=/home/ubuntu/tardisFolder/tardisProva/tardis
+GRADLE_REPO_PATH=/home/ubuntu/.gradle
+TOOLSJAR_PATH=/usr/lib/jvm/java-8-openjdk-amd64/lib
+
 #Compile all TARDIS runner
 cd RunFiles
 echo "[COMPILE AND MOVE SCRIPT] Compiling all Run files..."
 for f in *.java
 do
-	javac -cp /home/ubuntu/tardisFolder/tardisProva/tardis/master/build/libs/tardis-master-0.2.0-SNAPSHOT.jar:/home/ubuntu/tardisFolder/tardisProva/tardis/runtime/build/libs/sushi-lib-0.2.0-SNAPSHOT.jar:/home/ubuntu/tardisFolder/tardisProva/tardis/jbse/build/libs/jbse-0.10.0-SNAPSHOT-shaded.jar:/home/ubuntu/tardisFolder/tardisProva/tardis/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar:/home/ubuntu/.gradle/caches/modules-2/files-2.1/args4j/args4j/2.32/1ccacebdf8f2db750eb09a402969050f27695fb7/args4j-2.32.jar:/usr/lib/jvm/java-8-openjdk-amd64/lib/tools.jar $f && echo "[COMPILE AND MOVE SCRIPT] $f compiled" || echo "[COMPILE AND MOVE SCRIPT] $f: Failed"
+	javac -cp $TARDIS_HOME_PATH/master/build/libs/tardis-master-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/runtime/build/libs/sushi-lib-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/jbse/build/libs/jbse-0.10.0-SNAPSHOT-shaded.jar:$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/args4j/args4j/2.32/1ccacebdf8f2db750eb09a402969050f27695fb7/args4j-2.32.jar:$TOOLSJAR_PATH/tools.jar $f && echo "[COMPILE AND MOVE SCRIPT] $f compiled" || echo "[COMPILE AND MOVE SCRIPT] $f: Failed"
 done
 cd ..
 
