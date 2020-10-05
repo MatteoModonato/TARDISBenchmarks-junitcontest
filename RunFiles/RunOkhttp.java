@@ -35,14 +35,14 @@ public class RunOkhttp {
     public static final Path XPP3_PATH             = SUBJECT_ROOT.resolve(Paths.get("dependencies", "xpp3-1.1.4c.jar"));
     public static final Path JSON_PATH             = SUBJECT_ROOT.resolve(Paths.get("dependencies", "json-20080701.jar"));
 
-    public static final String TARGET_CLASS_1      = "okhttp3/Cookie";
-    public static final String TARGET_CLASS_2      = "okhttp3/internal/platform/AndroidPlatform";
-    public static final String TARGET_CLASS_3      = "okhttp3/ConnectionSpec";
-    public static final String TARGET_CLASS_4      = "okhttp3/internal/http/HttpHeaders";
-    public static final String TARGET_CLASS_5      = "okhttp3/internal/tls/DistinguishedNameParser";
-    public static final String TARGET_CLASS_6      = "okhttp3/CacheControl";
-    public static final String TARGET_CLASS_7      = "okhttp3/internal/tls/OkHostnameVerifier";
-    public static final String TARGET_CLASS_8      = "okhttp3/HttpUrl";
+    public static final String OKHTTP_1      = "okhttp3/Cookie";
+    public static final String OKHTTP_2      = "okhttp3/internal/platform/AndroidPlatform";
+    public static final String OKHTTP_3      = "okhttp3/ConnectionSpec";
+    public static final String OKHTTP_4      = "okhttp3/internal/http/HttpHeaders";
+    public static final String OKHTTP_5      = "okhttp3/internal/tls/DistinguishedNameParser";
+    public static final String OKHTTP_6      = "okhttp3/CacheControl";
+    public static final String OKHTTP_7      = "okhttp3/internal/tls/OkHostnameVerifier";
+    public static final String OKHTTP_8      = "okhttp3/HttpUrl";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

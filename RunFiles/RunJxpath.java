@@ -36,16 +36,16 @@ public class RunJxpath {
     public static final Path CGLIB_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "cglib-full-2.0.2.jar"));
     public static final Path JDOM_PATH             = SUBJECT_ROOT.resolve(Paths.get("dependencies", "jdom-1.0.jar"));
 
-    public static final String TARGET_CLASS_1      = "org/apache/commons/jxpath/util/BasicTypeConverter";
-    public static final String TARGET_CLASS_2      = "org/apache/commons/jxpath/ri/compiler/Path";
-    public static final String TARGET_CLASS_3      = "org/apache/commons/jxpath/ri/compiler/CoreOperationCompare";
-    public static final String TARGET_CLASS_4      = "org/apache/commons/jxpath/util/MethodLookupUtils";
-    public static final String TARGET_CLASS_5      = "org/apache/commons/jxpath/ri/compiler/Step";
-    public static final String TARGET_CLASS_6      = "org/apache/commons/jxpath/JXPathContext";
-    public static final String TARGET_CLASS_7      = "org/apache/commons/jxpath/ri/parser/XPathParserTokenManager";
-    public static final String TARGET_CLASS_8      = "org/apache/commons/jxpath/util/ValueUtils";
-    public static final String TARGET_CLASS_9      = "org/apache/commons/jxpath/ri/model/beans/PropertyIterator";
-    public static final String TARGET_CLASS_10     = "org/apache/commons/jxpath/ri/axes/SimplePathInterpreter";
+    public static final String JXPATH_1      = "org/apache/commons/jxpath/util/BasicTypeConverter";
+    public static final String JXPATH_2      = "org/apache/commons/jxpath/ri/compiler/Path";
+    public static final String JXPATH_3      = "org/apache/commons/jxpath/ri/compiler/CoreOperationCompare";
+    public static final String JXPATH_4      = "org/apache/commons/jxpath/util/MethodLookupUtils";
+    public static final String JXPATH_5      = "org/apache/commons/jxpath/ri/compiler/Step";
+    public static final String JXPATH_6      = "org/apache/commons/jxpath/JXPathContext";
+    public static final String JXPATH_7      = "org/apache/commons/jxpath/ri/parser/XPathParserTokenManager";
+    public static final String JXPATH_8      = "org/apache/commons/jxpath/util/ValueUtils";
+    public static final String JXPATH_9      = "org/apache/commons/jxpath/ri/model/beans/PropertyIterator";
+    public static final String JXPATH_10     = "org/apache/commons/jxpath/ri/axes/SimplePathInterpreter";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

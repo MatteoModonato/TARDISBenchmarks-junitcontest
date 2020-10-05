@@ -35,11 +35,11 @@ public class RunJsoup {
     public static final Path HAMCREST_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.12.jar"));
     
-    public static final String TARGET_CLASS_1      = "org/jsoup/parser/TokenQueue";
-    public static final String TARGET_CLASS_2      = "org/jsoup/select/QueryParser";
-    public static final String TARGET_CLASS_3      = "org/jsoup/helper/DataUtil";
-    public static final String TARGET_CLASS_4      = "org/jsoup/parser/Parser";
-    public static final String TARGET_CLASS_5      = "org/jsoup/parser/Tokeniser";
+    public static final String JSOUP_1      = "org/jsoup/parser/TokenQueue";
+    public static final String JSOUP_2      = "org/jsoup/select/QueryParser";
+    public static final String JSOUP_3      = "org/jsoup/helper/DataUtil";
+    public static final String JSOUP_4      = "org/jsoup/parser/Parser";
+    public static final String JSOUP_5      = "org/jsoup/parser/Tokeniser";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

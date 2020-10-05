@@ -143,16 +143,16 @@ public class RunFastjson {
     public static final Path SPRING_W_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "spring-web-4.3.7.RELEASE.jar"));
     public static final Path COMMONS_LANG3_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "commons-lang3-3.4.jar"));
 
-    public static final String TARGET_CLASS_1  = "com/alibaba/fastjson/parser/JSONLexerBase";
-    public static final String TARGET_CLASS_2  = "com/alibaba/fastjson/util/TypeUtils";
-    public static final String TARGET_CLASS_3  = "com/alibaba/fastjson/parser/DefaultJSONParser";
-    public static final String TARGET_CLASS_4  = "com/alibaba/fastjson/JSONArray";
-    public static final String TARGET_CLASS_5  = "com/alibaba/fastjson/util/JavaBeanInfo";
-    public static final String TARGET_CLASS_6  = "com/alibaba/fastjson/serializer/DateCodec";
-    public static final String TARGET_CLASS_7  = "com/alibaba/fastjson/util/IOUtils";
-    public static final String TARGET_CLASS_8  = "com/alibaba/fastjson/parser/JSONReaderScanner";
-    public static final String TARGET_CLASS_9  = "com/alibaba/fastjson/util/ASMUtils";
-    public static final String TARGET_CLASS_10 = "com/alibaba/fastjson/serializer/StringCodec";
+    public static final String FASTJSON_1  = "com/alibaba/fastjson/parser/JSONLexerBase";
+    public static final String FASTJSON_2  = "com/alibaba/fastjson/util/TypeUtils";
+    public static final String FASTJSON_3  = "com/alibaba/fastjson/parser/DefaultJSONParser";
+    public static final String FASTJSON_4  = "com/alibaba/fastjson/JSONArray";
+    public static final String FASTJSON_5  = "com/alibaba/fastjson/util/JavaBeanInfo";
+    public static final String FASTJSON_6  = "com/alibaba/fastjson/serializer/DateCodec";
+    public static final String FASTJSON_7  = "com/alibaba/fastjson/util/IOUtils";
+    public static final String FASTJSON_8  = "com/alibaba/fastjson/parser/JSONReaderScanner";
+    public static final String FASTJSON_9  = "com/alibaba/fastjson/util/ASMUtils";
+    public static final String FASTJSON_10 = "com/alibaba/fastjson/serializer/StringCodec";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

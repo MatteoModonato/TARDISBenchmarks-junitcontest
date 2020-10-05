@@ -27,16 +27,16 @@ public class RunZxing {
     public static final Path HAMCREST_CORE_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.12.jar"));
 
-    public static final String TARGET_CLASS_1     = "com/google/zxing/qrcode/detector/FinderPatternFinder";
-    public static final String TARGET_CLASS_2     = "com/google/zxing/pdf417/decoder/PDF417ScanningDecoder";
-    public static final String TARGET_CLASS_3     = "com/google/zxing/common/StringUtils";
-    public static final String TARGET_CLASS_4     = "com/google/zxing/client/result/ResultParser";
-    public static final String TARGET_CLASS_5     = "com/google/zxing/qrcode/encoder/MatrixUtil";
-    public static final String TARGET_CLASS_6     = "com/google/zxing/datamatrix/decoder/BitMatrixParser";
-    public static final String TARGET_CLASS_7     = "com/google/zxing/pdf417/decoder/ec/ModulusPoly";
-    public static final String TARGET_CLASS_8     = "com/google/zxing/qrcode/encoder/Encoder";
-    public static final String TARGET_CLASS_9     = "com/google/zxing/maxicode/decoder/DecodedBitStreamParser";
-    public static final String TARGET_CLASS_10    = "com/google/zxing/oned/CodaBarWriter";
+    public static final String ZXING_1     = "com/google/zxing/qrcode/detector/FinderPatternFinder";
+    public static final String ZXING_2     = "com/google/zxing/pdf417/decoder/PDF417ScanningDecoder";
+    public static final String ZXING_3     = "com/google/zxing/common/StringUtils";
+    public static final String ZXING_4     = "com/google/zxing/client/result/ResultParser";
+    public static final String ZXING_5     = "com/google/zxing/qrcode/encoder/MatrixUtil";
+    public static final String ZXING_6     = "com/google/zxing/datamatrix/decoder/BitMatrixParser";
+    public static final String ZXING_7     = "com/google/zxing/pdf417/decoder/ec/ModulusPoly";
+    public static final String ZXING_8     = "com/google/zxing/qrcode/encoder/Encoder";
+    public static final String ZXING_9     = "com/google/zxing/maxicode/decoder/DecodedBitStreamParser";
+    public static final String ZXING_10    = "com/google/zxing/oned/CodaBarWriter";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

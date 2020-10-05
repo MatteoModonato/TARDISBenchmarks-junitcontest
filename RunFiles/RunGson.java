@@ -27,16 +27,16 @@ public class RunGson {
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.12.jar"));
     public static final Path HAMCREST_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
 
-    public static final String TARGET_CLASS_1  = "com/google/gson/internal/bind/ReflectiveTypeAdapterFactory";
-    public static final String TARGET_CLASS_2  = "com/google/gson/internal/LinkedHashTreeMap";
-    public static final String TARGET_CLASS_3  = "com/google/gson/JsonPrimitive";
-    public static final String TARGET_CLASS_4  = "com/google/gson/stream/JsonReader";
-    public static final String TARGET_CLASS_5  = "com/google/gson/internal/LinkedTreeMap";
-    public static final String TARGET_CLASS_6  = "com/google/gson/internal/bind/JsonTreeReader";
-    public static final String TARGET_CLASS_7  = "ocom/google/gson/GsonBuilder";
-    public static final String TARGET_CLASS_8  = "com/google/gson/internal/bind/JsonTreeReader";
-    public static final String TARGET_CLASS_9  = "com/google/gson/reflect/TypeToken";
-    public static final String TARGET_CLASS_10 = "com/google/gson/internal/Excluder";
+    public static final String GSON_1  = "com/google/gson/internal/bind/ReflectiveTypeAdapterFactory";
+    public static final String GSON_2  = "com/google/gson/internal/LinkedHashTreeMap";
+    public static final String GSON_3  = "com/google/gson/JsonPrimitive";
+    public static final String GSON_4  = "com/google/gson/stream/JsonReader";
+    public static final String GSON_5  = "com/google/gson/internal/LinkedTreeMap";
+    public static final String GSON_6  = "com/google/gson/internal/bind/JsonTreeReader";
+    public static final String GSON_7  = "ocom/google/gson/GsonBuilder";
+    public static final String GSON_8  = "com/google/gson/internal/bind/JsonTreeReader";
+    public static final String GSON_9  = "com/google/gson/reflect/TypeToken";
+    public static final String GSON_10 = "com/google/gson/internal/Excluder";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

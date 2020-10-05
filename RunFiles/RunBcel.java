@@ -30,16 +30,16 @@ public class RunBcel {
     public static final Path JNAP_PATH             = SUBJECT_ROOT.resolve(Paths.get("dependencies", "jna-platform-4.2.2.jar"));
     public static final Path CLANG_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "commons-lang3-3.4.jar"));
     
-    public static final String TARGET_CLASS_1      = "org/apache/bcel/classfile/Utility";
-    public static final String TARGET_CLASS_2      = "org/apache/bcel/verifier/structurals/InstConstraintVisitor";
-    public static final String TARGET_CLASS_3      = "org/apache/bcel/generic/ConstantPoolGen";
-    public static final String TARGET_CLASS_4      = "org/apache/bcel/generic/InstructionList";
-    public static final String TARGET_CLASS_5      = "org/apache/bcel/verifier/statics/Pass3aVerifier";
-    public static final String TARGET_CLASS_6      = "org/apache/bcel/verifier/structurals/LocalVariables";
-    public static final String TARGET_CLASS_7      = "org/apache/bcel/util/Class2HTML";
-    public static final String TARGET_CLASS_8      = "org/apache/bcel/generic/BranchInstruction";
-    public static final String TARGET_CLASS_9      = "org/apache/bcel/classfile/StackMapEntry";
-    public static final String TARGET_CLASS_10     = "org/apache/bcel/verifier/structurals/Subroutines";
+    public static final String BCEL_1      = "org/apache/bcel/classfile/Utility";
+    public static final String BCEL_2      = "org/apache/bcel/verifier/structurals/InstConstraintVisitor";
+    public static final String BCEL_3      = "org/apache/bcel/generic/ConstantPoolGen";
+    public static final String BCEL_4      = "org/apache/bcel/generic/InstructionList";
+    public static final String BCEL_5      = "org/apache/bcel/verifier/statics/Pass3aVerifier";
+    public static final String BCEL_6      = "org/apache/bcel/verifier/structurals/LocalVariables";
+    public static final String BCEL_7      = "org/apache/bcel/util/Class2HTML";
+    public static final String BCEL_8      = "org/apache/bcel/generic/BranchInstruction";
+    public static final String BCEL_9      = "org/apache/bcel/classfile/StackMapEntry";
+    public static final String BCEL_10     = "org/apache/bcel/verifier/structurals/Subroutines";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

@@ -58,9 +58,9 @@ public class RunWebmagic2_3_4 {
     public static final Path HTTPCORE_PATH     = SUBJECT_ROOT.resolve(Paths.get("dependencies", "httpcore-4.4.4.jar"));
     public static final Path HTTCLIENT_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "httpclient-4.5.2.jar"));
 
-    public static final String TARGET_CLASS_2  = "us/codecraft/webmagic/Spider";
-    public static final String TARGET_CLASS_3  = "us/codecraft/webmagic/Site";
-    public static final String TARGET_CLASS_4  = "us/codecraft/webmagic/Page";
+    public static final String WEBMAGIC_2  = "us/codecraft/webmagic/Spider";
+    public static final String WEBMAGIC_3  = "us/codecraft/webmagic/Site";
+    public static final String WEBMAGIC_4  = "us/codecraft/webmagic/Page";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

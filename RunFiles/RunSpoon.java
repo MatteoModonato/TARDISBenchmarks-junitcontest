@@ -60,16 +60,16 @@ public class RunSpoon {
     public static final Path MAVEN_MOD_PATH        = SUBJECT_ROOT.resolve(Paths.get("dependencies", "maven-model-3.5.0.jar"));
     public static final Path XZ_PATH               = SUBJECT_ROOT.resolve(Paths.get("dependencies", "xz-1.8.jar"));
 
-    public static final String TARGET_CLASS_105    = "spoon/support/compiler/jdt/PositionBuilder";
-    public static final String TARGET_CLASS_155    = "spoon/reflect/visitor/filter/AllMethodsSameSignatureFunction";
-    public static final String TARGET_CLASS_16     = "spoon/reflect/path/CtElementPathBuilder";
-    public static final String TARGET_CLASS_169    = "spoon/reflect/visitor/ImportScannerImpl";
-    public static final String TARGET_CLASS_20     = "spoon/support/reflect/reference/CtLocalVariableReferenceImpl";
-    public static final String TARGET_CLASS_211    = "spoon/reflect/path/impl/CtRolePathElement";
-    public static final String TARGET_CLASS_25     = "spoon/pattern/internal/ValueConvertorImpl";
-    public static final String TARGET_CLASS_253    = "spoon/pattern/internal/parameter/MapParameterInfo";
-    public static final String TARGET_CLASS_32     = "spoon/MavenLauncher";
-    public static final String TARGET_CLASS_65     = "spoon/support/DefaultCoreFactory";
+    public static final String SPOON_105    = "spoon/support/compiler/jdt/PositionBuilder";
+    public static final String SPOON_155    = "spoon/reflect/visitor/filter/AllMethodsSameSignatureFunction";
+    public static final String SPOON_16     = "spoon/reflect/path/CtElementPathBuilder";
+    public static final String SPOON_169    = "spoon/reflect/visitor/ImportScannerImpl";
+    public static final String SPOON_20     = "spoon/support/reflect/reference/CtLocalVariableReferenceImpl";
+    public static final String SPOON_211    = "spoon/reflect/path/impl/CtRolePathElement";
+    public static final String SPOON_25     = "spoon/pattern/internal/ValueConvertorImpl";
+    public static final String SPOON_253    = "spoon/pattern/internal/parameter/MapParameterInfo";
+    public static final String SPOON_32     = "spoon/MavenLauncher";
+    public static final String SPOON_65     = "spoon/support/DefaultCoreFactory";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

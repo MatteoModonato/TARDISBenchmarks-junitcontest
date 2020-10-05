@@ -28,10 +28,10 @@ public class RunImage {
     public static final Path HAMCREST_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.12.jar"));
 
-    public static final String TARGET_CLASS_1      = "org/apache/commons/imaging/formats/tiff/write/TiffImageWriterBase";
-    public static final String TARGET_CLASS_2      = "org/apache/commons/imaging/common/RationalNumber";
-    public static final String TARGET_CLASS_3      = "org/apache/commons/imaging/formats/bmp/BmpImageParser";
-    public static final String TARGET_CLASS_4      = "org/apache/commons/imaging/formats/tiff/TiffField";
+    public static final String IMAGE_1      = "org/apache/commons/imaging/formats/tiff/write/TiffImageWriterBase";
+    public static final String IMAGE_2      = "org/apache/commons/imaging/common/RationalNumber";
+    public static final String IMAGE_3      = "org/apache/commons/imaging/formats/bmp/BmpImageParser";
+    public static final String IMAGE_4      = "org/apache/commons/imaging/formats/tiff/TiffField";
 	
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

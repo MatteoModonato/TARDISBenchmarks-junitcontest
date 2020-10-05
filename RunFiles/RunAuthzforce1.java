@@ -48,16 +48,16 @@ public class RunAuthzforce1 {
     public static final Path SPRING_CORE_PATH      = SUBJECT_ROOT.resolve(Paths.get("dependencies", "spring-core-4.3.18.RELEASE.jar"));
     public static final Path XMLRESOLVER_PATH      = SUBJECT_ROOT.resolve(Paths.get("dependencies", "xml-resolver-1.2.jar"));
 
-    public static final String TARGET_CLASS_1  = "org/ow2/authzforce/core/pdp/impl/PdpBean";
-    public static final String TARGET_CLASS_5  = "org/ow2/authzforce/core/pdp/impl/CloseableAttributeProvider";
-    public static final String TARGET_CLASS_11 = "org/ow2/authzforce/core/pdp/impl/func/LogicalNOfFunction";
-    public static final String TARGET_CLASS_27 = "org/ow2/authzforce/core/pdp/impl/func/MapFunctionFactory";
-    public static final String TARGET_CLASS_32 = "org/ow2/authzforce/core/pdp/impl/func/SubstringFunction";
-    public static final String TARGET_CLASS_33 = "org/ow2/authzforce/core/pdp/impl/SchemaHandler";
-    public static final String TARGET_CLASS_48 = "org/ow2/authzforce/core/pdp/impl/policy/PolicyVersions";
-    public static final String TARGET_CLASS_52 = "org/ow2/authzforce/core/pdp/impl/PepActionExpression";
-    public static final String TARGET_CLASS_63 = "org/ow2/authzforce/core/pdp/impl/combining/DPUnlessPDCombiningAlg";
-    public static final String TARGET_CLASS_65 = "org/ow2/authzforce/core/pdp/impl/combining/FirstApplicableCombiningAlg";
+    public static final String AUTHZFORCE_1  = "org/ow2/authzforce/core/pdp/impl/PdpBean";
+    public static final String AUTHZFORCE_5  = "org/ow2/authzforce/core/pdp/impl/CloseableAttributeProvider";
+    public static final String AUTHZFORCE_11 = "org/ow2/authzforce/core/pdp/impl/func/LogicalNOfFunction";
+    public static final String AUTHZFORCE_27 = "org/ow2/authzforce/core/pdp/impl/func/MapFunctionFactory";
+    public static final String AUTHZFORCE_32 = "org/ow2/authzforce/core/pdp/impl/func/SubstringFunction";
+    public static final String AUTHZFORCE_33 = "org/ow2/authzforce/core/pdp/impl/SchemaHandler";
+    public static final String AUTHZFORCE_48 = "org/ow2/authzforce/core/pdp/impl/policy/PolicyVersions";
+    public static final String AUTHZFORCE_52 = "org/ow2/authzforce/core/pdp/impl/PepActionExpression";
+    public static final String AUTHZFORCE_63 = "org/ow2/authzforce/core/pdp/impl/combining/DPUnlessPDCombiningAlg";
+    public static final String AUTHZFORCE_65 = "org/ow2/authzforce/core/pdp/impl/combining/FirstApplicableCombiningAlg";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

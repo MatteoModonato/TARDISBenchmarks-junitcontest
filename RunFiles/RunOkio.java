@@ -29,16 +29,16 @@ public class RunOkio {
     public static final Path ANIMAL_SNIFFER_PATH   = SUBJECT_ROOT.resolve(Paths.get("dependencies", "animal-sniffer-annotations-1.10.jar"));
     public static final Path JSR_PATH              = SUBJECT_ROOT.resolve(Paths.get("dependencies", "jsr305-3.0.2.jar"));
     
-    public static final String TARGET_CLASS_1      = "okio/Buffer";
-    public static final String TARGET_CLASS_2      = "okio/ByteString";
-    public static final String TARGET_CLASS_3      = "okio/SegmentedByteString";
-    public static final String TARGET_CLASS_4      = "okio/RealBufferedSource";
-    public static final String TARGET_CLASS_5      = "okio/RealBufferedSink";
-    public static final String TARGET_CLASS_6      = "okio/Okio";
-    public static final String TARGET_CLASS_7      = "okio/Segment";
-    public static final String TARGET_CLASS_8      = "okio/AsyncTimeout";
-    public static final String TARGET_CLASS_9      = "okio/Utf8";
-    public static final String TARGET_CLASS_10     = "okio/Timeout";
+    public static final String OKIO_1      = "okio/Buffer";
+    public static final String OKIO_2      = "okio/ByteString";
+    public static final String OKIO_3      = "okio/SegmentedByteString";
+    public static final String OKIO_4      = "okio/RealBufferedSource";
+    public static final String OKIO_5      = "okio/RealBufferedSink";
+    public static final String OKIO_6      = "okio/Okio";
+    public static final String OKIO_7      = "okio/Segment";
+    public static final String OKIO_8      = "okio/AsyncTimeout";
+    public static final String OKIO_9      = "okio/Utf8";
+    public static final String OKIO_10     = "okio/Timeout";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

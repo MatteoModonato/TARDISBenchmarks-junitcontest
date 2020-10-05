@@ -46,14 +46,14 @@ public class RunRe2j {
     public static final Path HAMCREST_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.12.jar"));
 
-    public static final String TARGET_CLASS_1  = "com/google/re2j/Parser";
-    public static final String TARGET_CLASS_2  = "com/google/re2j/CharClass";
-    public static final String TARGET_CLASS_3 = "com/google/re2j/Simplify";
-    public static final String TARGET_CLASS_4 = "com/google/re2j/Utils";
-    public static final String TARGET_CLASS_5 = "com/google/re2j/Compiler";
-    public static final String TARGET_CLASS_6 = "com/google/re2j/Machine";
-    public static final String TARGET_CLASS_7 = "com/google/re2j/Regexp";
-    public static final String TARGET_CLASS_8 = "com/google/re2j/RE2";
+    public static final String RE2J_1  = "com/google/re2j/Parser";
+    public static final String RE2J_2  = "com/google/re2j/CharClass";
+    public static final String RE2J_3 = "com/google/re2j/Simplify";
+    public static final String RE2J_4 = "com/google/re2j/Utils";
+    public static final String RE2J_5 = "com/google/re2j/Compiler";
+    public static final String RE2J_6 = "com/google/re2j/Machine";
+    public static final String RE2J_7 = "com/google/re2j/Regexp";
+    public static final String RE2J_8 = "com/google/re2j/RE2";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

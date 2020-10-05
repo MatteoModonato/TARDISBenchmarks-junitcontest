@@ -54,8 +54,8 @@ public class RunWebmagic1_5 {
     public static final Path HAMCREST_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
     public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.11.jar"));
 
-    public static final String TARGET_CLASS_1      = "us/codecraft/webmagic/model/PageModelExtractor";
-    public static final String TARGET_CLASS_5      = "us/codecraft/webmagic/utils/DoubleKeyMap";
+    public static final String WEBMAGIC_1      = "us/codecraft/webmagic/model/PageModelExtractor";
+    public static final String WEBMAGIC_5      = "us/codecraft/webmagic/utils/DoubleKeyMap";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

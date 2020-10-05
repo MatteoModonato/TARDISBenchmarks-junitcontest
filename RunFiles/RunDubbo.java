@@ -46,15 +46,15 @@ public class RunDubbo {
     public static final Path CLOGGING_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "commons-logging-1.2.jar"));
     public static final Path SLF4J_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "slf4j-api-1.7.25.jar"));
     
-    public static final String TARGET_CLASS_2      = "com/alibaba/dubbo/common/utils/ReflectUtils";
-    public static final String TARGET_CLASS_3      = "com/alibaba/dubbo/common/utils/StringUtils";
-    public static final String TARGET_CLASS_4      = "com/alibaba/dubbo/common/utils/ClassHelper";
-    public static final String TARGET_CLASS_5      = "com/alibaba/dubbo/common/io/UnsafeByteArrayOutputStream";
-    public static final String TARGET_CLASS_6      = "com/alibaba/dubbo/common/utils/CompatibleTypeUtils";
-    public static final String TARGET_CLASS_7      = "com/alibaba/dubbo/common/beanutil/JavaBeanDescriptor";
-    public static final String TARGET_CLASS_8      = "com/alibaba/dubbo/common/Parameters";
-    public static final String TARGET_CLASS_9      = "com/alibaba/dubbo/common/io/Bytes";
-    public static final String TARGET_CLASS_10     = "com/alibaba/dubbo/common/bytecode/Wrapper";
+    public static final String DUBBO_2      = "com/alibaba/dubbo/common/utils/ReflectUtils";
+    public static final String DUBBO_3      = "com/alibaba/dubbo/common/utils/StringUtils";
+    public static final String DUBBO_4      = "com/alibaba/dubbo/common/utils/ClassHelper";
+    public static final String DUBBO_5      = "com/alibaba/dubbo/common/io/UnsafeByteArrayOutputStream";
+    public static final String DUBBO_6      = "com/alibaba/dubbo/common/utils/CompatibleTypeUtils";
+    public static final String DUBBO_7      = "com/alibaba/dubbo/common/beanutil/JavaBeanDescriptor";
+    public static final String DUBBO_8      = "com/alibaba/dubbo/common/Parameters";
+    public static final String DUBBO_9      = "com/alibaba/dubbo/common/io/Bytes";
+    public static final String DUBBO_10     = "com/alibaba/dubbo/common/bytecode/Wrapper";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;
