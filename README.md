@@ -17,5 +17,7 @@ Run **TardisLauncher.sh** script to run TARDIS on a single program or on all ben
 
 Eg. `bash TardisLauncher.sh -t 5 -m 5 -e 180 -g 20`
 
+The script computes the test suite metrics after each Tardis run.
+
 #### DiskCleanup.sh
 Run **DiskCleanup.sh** script to empty all *tardis-tmp* folders.
