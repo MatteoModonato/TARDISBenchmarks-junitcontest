@@ -48,7 +48,7 @@ public class RunJsoup {
 		final TimeUnit timeBudgetTimeUnit = TimeUnit.MINUTES;
 		
 		final Options o = new Options();
-		o.setTargetClass(TARGET_CLASS_1);
+		o.setTargetClass(JSOUP_1);
 		o.setMaxDepth(maxDepth);
 		o.setNumOfThreads(numOfThreads);
 		o.setTmpDirectoryBase(TMP_BASE_PATH);

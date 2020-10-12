@@ -64,7 +64,7 @@ public class RunPdfbox {
 		final TimeUnit timeBudgetTimeUnit = TimeUnit.MINUTES;
 		
 		final Options o = new Options();
-		o.setTargetClass(TARGET_CLASS_22);
+		o.setTargetClass(PDFBOX_8);
 		o.setMaxDepth(maxDepth);
 		o.setNumOfThreads(numOfThreads);
 		o.setTmpDirectoryBase(TMP_BASE_PATH);

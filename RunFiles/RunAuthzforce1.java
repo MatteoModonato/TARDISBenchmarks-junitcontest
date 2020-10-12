@@ -66,7 +66,7 @@ public class RunAuthzforce1 {
 		final TimeUnit timeBudgetTimeUnit = TimeUnit.MINUTES;
 		
 		final Options o = new Options();
-		o.setTargetClass(TARGET_CLASS_32);
+		o.setTargetClass(AUTHZFORCE_1);
 		o.setMaxDepth(maxDepth);
 		o.setNumOfThreads(numOfThreads);
 		o.setTmpDirectoryBase(TMP_BASE_PATH);

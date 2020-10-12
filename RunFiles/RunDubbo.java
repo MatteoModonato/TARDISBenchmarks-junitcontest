@@ -63,7 +63,7 @@ public class RunDubbo {
 		final TimeUnit timeBudgetTimeUnit = TimeUnit.MINUTES;
 		
 		final Options o = new Options();
-		o.setTargetClass(TARGET_CLASS_2);
+		o.setTargetClass(DUBBO_2);
 		o.setMaxDepth(maxDepth);
 		o.setNumOfThreads(numOfThreads);
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
