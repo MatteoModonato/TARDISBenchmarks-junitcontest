@@ -80,8 +80,8 @@ if [ $input == "2" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/AUTHZFORCE
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/AUTHZFORCE
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/core-release-13.3.0\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/core-release-13.3.0\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -104,8 +104,8 @@ if [ $input == "3" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/BCEL
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/BCEL
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/bcel-6.0-src\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/bcel-6.0-src\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -128,8 +128,8 @@ if [ $input == "4" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/DUBBO
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/DUBBO
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/dubbo\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/dubbo\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -152,8 +152,8 @@ if [ $input == "5" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/FASTJSON
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/FASTJSON
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fastjson\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fastjson\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -176,8 +176,8 @@ if [ $input == "6" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/FESCAR
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/FESCAR
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fescar\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fescar\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -200,8 +200,8 @@ if [ $input == "7" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/GSON
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/GSON
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/gson\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/gson\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -224,8 +224,8 @@ if [ $input == "8" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/GUAVA
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/GUAVA
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/guava\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/guava\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -248,8 +248,8 @@ if [ $input == "9" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/IMAGE
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/IMAGE
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-imaging\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-imaging\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -272,8 +272,8 @@ if [ $input == "10" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/JSOUP
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/JSOUP
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/jsoup\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/jsoup\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -296,8 +296,8 @@ if [ $input == "11" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/JXPATH
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/JXPATH
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-jxpath-1.3-src\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-jxpath-1.3-src\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -320,8 +320,8 @@ if [ $input == "12" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/LA4J
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/LA4J
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/la4j-0.6.0\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/la4j-0.6.0\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -344,8 +344,8 @@ if [ $input == "13" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/OKHTTP
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/OKHTTP
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okhttp\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okhttp\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -368,8 +368,8 @@ if [ $input == "14" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/OKIO
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/OKIO
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okio\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okio\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -392,8 +392,8 @@ if [ $input == "15" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/PDFBOX
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/PDFBOX
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/pdfbox\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/pdfbox\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -416,8 +416,8 @@ if [ $input == "16" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/RE2J
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/RE2J
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/re2j\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/re2j\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -440,8 +440,8 @@ if [ $input == "17" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/SPOON
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/SPOON
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/spoon\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/spoon\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -464,15 +464,15 @@ if [ $input == "18" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/WEBMAGIC
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/WEBMAGIC
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWebmagic1_5.java
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -506,8 +506,8 @@ if [ $input == "19" ] || [ $input == "1" ]; then
 	mkdir $LOG_PATH/$dt/ZXING
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/ZXING
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
-			15s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
-			16s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/zxing\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/zxing\2/
 			s/\(setNumOfThreads(\).*\();\)/\1$thread\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
