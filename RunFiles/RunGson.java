@@ -33,7 +33,7 @@ public class RunGson {
     public static final String GSON_4  = "com/google/gson/stream/JsonReader";
     public static final String GSON_5  = "com/google/gson/internal/LinkedTreeMap";
     public static final String GSON_6  = "com/google/gson/internal/bind/JsonTreeReader";
-    public static final String GSON_7  = "ocom/google/gson/GsonBuilder";
+    public static final String GSON_7  = "com/google/gson/GsonBuilder";
     public static final String GSON_8  = "com/google/gson/internal/bind/JsonTreeReader";
     public static final String GSON_9  = "com/google/gson/reflect/TypeToken";
     public static final String GSON_10 = "com/google/gson/internal/Excluder";
