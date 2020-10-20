@@ -34,9 +34,9 @@ public class RunZxing {
     public static final String ZXING_5     = "com/google/zxing/qrcode/encoder/MatrixUtil";
     public static final String ZXING_6     = "com/google/zxing/datamatrix/decoder/BitMatrixParser";
     public static final String ZXING_7     = "com/google/zxing/pdf417/decoder/ec/ModulusPoly";
-    public static final String ZXING_8     = "com/google/zxing/qrcode/encoder/Encoder";
-    public static final String ZXING_9     = "com/google/zxing/maxicode/decoder/DecodedBitStreamParser";
-    public static final String ZXING_10    = "com/google/zxing/oned/CodaBarWriter";
+    public static final String ZXING_8     = "com/google/zxing/maxicode/decoder/DecodedBitStreamParser";
+    public static final String ZXING_9     = "com/google/zxing/oned/CodaBarWriter";
+    public static final String ZXING_10    = "com/google/zxing/qrcode/encoder/Encoder";
 
 	public static void main(String[] s) throws IOException {
 		final int maxDepth = 1000;

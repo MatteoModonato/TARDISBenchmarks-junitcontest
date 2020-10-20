@@ -201,7 +201,7 @@ BCEL-7=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/bcel-6.0-src/target/classes,REPOSITORYHOMEPATH/bcel-6.0-src/target/bcel-6.0-tests.jar
+    REPOSITORYHOMEPATH/bcel-6.0-src/target/classes
   )
 }
 BCEL-8=
