@@ -10,12 +10,14 @@ First of all, run **UnzipAndCompile.sh** script to unzip and compile all benchma
 
 #### TardisLauncher.sh
 Run **TardisLauncher.sh** script to run TARDIS on a single program or on a multiple benchmarks. Pass the following parameters to set TARDIS configuration: 
-* number of threads (-t)
+* number of JBSE threads (-j)
+* number of Evosuite threads (-e)
 * number of mosa (-m)
-* evosuiteTimeBudget (-e)
-* globalTimeBudget (-g)
+* Evosuite time budget (-t)
+* global time budget (-g)
+* max test case depth (-d)
 
-Eg. `bash TardisLauncher.sh -t 5 -m 5 -e 180 -g 20`
+Eg. `bash TardisLauncher.sh -j 5 -e 10 -m 5 -t 180 -g 20 -d 25`
 
 The script computes the test suite metrics after each Tardis run.
 
