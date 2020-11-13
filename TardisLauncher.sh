@@ -1,7 +1,10 @@
 #!/bin/sh
 echo "[TARDIS LAUNCHER] STARTING at $(date)"
 
-# Edit TARDIS_HOME_PATH, Z3_PATH, REPO_HOME_PATH, GRADLE_REPO_PATH, LOG_PATH and TOOLSJAR_PATH to reflect the paths where you installed the code:
+# -------------------------------------------------------------------------------
+# Edit TARDIS_HOME_PATH, Z3_PATH, REPO_HOME_PATH, GRADLE_REPO_PATH, LOG_PATH 
+# and TOOLSJAR_PATH to reflect the paths where you installed the code:
+
 # TARDIS_HOME_PATH: Folder where TARDIS is installed
 # Z3_PATH: 			Folder where Z3 is installed
 # REPO_HOME_PATH: 	Home folder of this repository
@@ -14,6 +17,7 @@ REPO_HOME_PATH=/home/ubuntu/tardisFolder/tardisExperiments/bin/TARDISBenchmarks-
 GRADLE_REPO_PATH=/home/ubuntu/.gradle
 LOG_PATH=/home/ubuntu/tardisFolder/tardisExperiments
 TOOLSJAR_PATH=/usr/lib/jvm/java-8-openjdk-amd64/lib
+# -------------------------------------------------------------------------------
 
 while getopts j:e:m:t:g:d: flag
 do
@@ -33,11 +37,19 @@ echo "evosuiteTime: $evosuiteTime";
 echo "globalTime: $globalTime";
 echo "testCaseDepth: $testCaseDepth";
 
+# -------------------------------------------------------------------------------
+# Editable variables:
+
 # Set javaMem variable with xmx and/or xms value (-Xms16G -Xmx16G)
 javaMem="-Xms16G -Xmx16G"
-
-# Set timeoutThreshold variable to decide after how many minutes kill the execution if still running after $globalTime minutes
+# Set sizeThreshold variable to choose the maximum size (MB) of tardis-tmp 
+# folders. Tmp folders will be deleted if the size is greater than sizeThreshold.
+sizeThreshold=1000
+# Set timeoutThreshold variable to decide after how many minutes kill the 
+# execution if still running after $globalTime minutes
 timeoutThreshold=1
+# -------------------------------------------------------------------------------
+
 if [ $timeoutThreshold -lt 0 ]; then
 	echo "[ERROR] timeoutThreshold variable must be greater than or equal to 0"
 	echo "[TARDIS LAUNCHER] ENDING at $(date)"
@@ -106,6 +118,11 @@ if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/AUTHZFORCE/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Authzforce$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/core-release-13.3.0/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/AUTHZFORCE 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -132,6 +149,11 @@ if [[ " ${input_array[@]} " =~ " 3 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/BCEL/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Bcel$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/bcel-6.0-src/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/BCEL 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -158,6 +180,11 @@ if [[ " ${input_array[@]} " =~ " 4 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/DUBBO/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Dubbo$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/dubbo/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/DUBBO 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -184,6 +211,11 @@ if [[ " ${input_array[@]} " =~ " 5 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/FASTJSON/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Fastjson$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/fastjson/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/FASTJSON 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -210,6 +242,11 @@ if [[ " ${input_array[@]} " =~ " 6 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/FESCAR/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Fescar$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/fescar/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/FESCAR 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -236,6 +273,11 @@ if [[ " ${input_array[@]} " =~ " 7 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/GSON/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Gson$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/gson/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/GSON 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -262,6 +304,11 @@ if [[ " ${input_array[@]} " =~ " 8 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/GUAVA/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Guava$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/guava/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/GUAVA 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -288,6 +335,11 @@ if [[ " ${input_array[@]} " =~ " 9 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		java CalculateResults $LOG_PATH/$dt/IMAGE/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Image$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/commons-imaging/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/IMAGE 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -314,6 +366,11 @@ if [[ " ${input_array[@]} " =~ " 10 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/JSOUP/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Jsoup$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/jsoup/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/JSOUP 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -340,6 +397,11 @@ if [[ " ${input_array[@]} " =~ " 11 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/JXPATH/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Jxpath$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/commons-jxpath-1.3-src/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/JXPATH 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -366,6 +428,11 @@ if [[ " ${input_array[@]} " =~ " 12 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/LA4J/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv La4j$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/la4j-0.6.0/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/LA4J 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -392,6 +459,11 @@ if [[ " ${input_array[@]} " =~ " 13 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/OKHTTP/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Okhttp$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/okhttp/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/OKHTTP 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -418,6 +490,11 @@ if [[ " ${input_array[@]} " =~ " 14 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/OKIO/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Okio$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/okio/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/OKIO 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -444,6 +521,11 @@ if [[ " ${input_array[@]} " =~ " 15 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/PDFBOX/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Pdfbox$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/pdfbox/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/PDFBOX 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -470,6 +552,11 @@ if [[ " ${input_array[@]} " =~ " 16 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/RE2J/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Re2j$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/re2j/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/RE2J 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -496,6 +583,11 @@ if [[ " ${input_array[@]} " =~ " 17 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/SPOON/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Spoon$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/spoon/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/SPOON 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -531,6 +623,11 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/WEBMAGIC/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Webmagic$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/webmagic/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/WEBMAGIC 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 	for BENCHMARK in WEBMAGIC-2 WEBMAGIC-3 WEBMAGIC-4
 	do
@@ -542,6 +639,11 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/WEBMAGIC/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Webmagic$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/webmagic/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/WEBMAGIC 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 
@@ -568,6 +670,11 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		java CalculateResults $LOG_PATH/$dt/ZXING/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Zxing$BENCHMARK
 		TMPDIR=$(ls -td $REPO_HOME_PATH/zxing/tardis-tmp/* | head -1)
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/ZXING 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
 	done
 fi
 

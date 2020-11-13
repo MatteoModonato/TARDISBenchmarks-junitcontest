@@ -1,12 +1,16 @@
 #!/bin/sh
 
-# Edit TARDIS_HOME_PATH, GRADLE_REPO_PATH and TOOLSJAR_PATH to reflect the paths where you installed the code:
+# -------------------------------------------------------------------------------
+# Edit TARDIS_HOME_PATH, GRADLE_REPO_PATH and TOOLSJAR_PATH to 
+# reflect the paths where you installed the code:
+
 # TARDIS_HOME_PATH: Folder where TARDIS is installed
 # GRADLE_REPO_PATH: Gradle folder
 # TOOLSJAR_PATH: 	tools.jar path
 TARDIS_HOME_PATH=/home/ubuntu/tardisFolder/tardisProva/tardis
 GRADLE_REPO_PATH=/home/ubuntu/.gradle
 TOOLSJAR_PATH=/usr/lib/jvm/java-8-openjdk-amd64/lib
+# -------------------------------------------------------------------------------
 
 #Compile all TARDIS runner
 cd RunFiles

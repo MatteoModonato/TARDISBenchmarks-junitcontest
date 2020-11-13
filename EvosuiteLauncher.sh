@@ -1,13 +1,17 @@
 #!/bin/sh
 echo "[EVOSUITE LAUNCHER] STARTING at $(date)"
 
-# Edit EVOSUITE_PATH, REPO_HOME_PATH and RESULTS_PATH to reflect the paths where you installed the code:
+# -------------------------------------------------------------------------------
+# Edit EVOSUITE_PATH, REPO_HOME_PATH and RESULTS_PATH to 
+# reflect the paths where you installed the code:
+
 # EVOSUITE_PATH:    Evosuite.jar path
 # REPO_HOME_PATH: 	Home folder of this repository
 # RESULTS_PATH:     Folder where you want to save the Evosuite results
 EVOSUITE_PATH=/home/ubuntu/evosuite.jar
 REPO_HOME_PATH=/home/ubuntu/tardisFolder/tardisExperiments/bin/TARDISBenchmarks-junitcontest
 RESULTS_PATH=/home/ubuntu/tardisFolder/tardisExperiments
+# -------------------------------------------------------------------------------
 
 while getopts s: flag
 do
