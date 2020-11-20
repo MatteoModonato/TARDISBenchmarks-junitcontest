@@ -106,6 +106,8 @@ public class CalculateResults {
 			//handle this
 		}
 
+		System.out.println(seedTest);
+
 	}
 
 	public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {

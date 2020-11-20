@@ -8,9 +8,9 @@ echo "[EVOSUITE LAUNCHER] STARTING at $(date)"
 # EVOSUITE_PATH:    Evosuite.jar path
 # REPO_HOME_PATH: 	Home folder of this repository
 # RESULTS_PATH:     Folder where you want to save the Evosuite results
-EVOSUITE_PATH=/home/ubuntu/evosuite.jar
-REPO_HOME_PATH=/home/ubuntu/tardisFolder/tardisExperiments/bin/TARDISBenchmarks-junitcontest
-RESULTS_PATH=/home/ubuntu/tardisFolder/tardisExperiments
+EVOSUITE_PATH=/dev/hd2/evosuiteFolder/evosuite-1.1.0.jar
+REPO_HOME_PATH=/dev/hd2/tardisFolder/TARDISBenchmarks-junitcontest
+RESULTS_PATH=/dev/hd2/evosuiteFolder/evosuiteLogs
 # -------------------------------------------------------------------------------
 
 while getopts s: flag

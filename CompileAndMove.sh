@@ -7,9 +7,9 @@
 # TARDIS_HOME_PATH: Folder where TARDIS is installed
 # GRADLE_REPO_PATH: Gradle folder
 # TOOLSJAR_PATH: 	tools.jar path
-TARDIS_HOME_PATH=/home/ubuntu/tardisFolder/tardisProva/tardis
-GRADLE_REPO_PATH=/home/ubuntu/.gradle
-TOOLSJAR_PATH=/usr/lib/jvm/java-8-openjdk-amd64/lib
+TARDIS_HOME_PATH=/dev/hd2/tardisFolder/tardis
+GRADLE_REPO_PATH=/dev/hd2/usr/.gradle
+TOOLSJAR_PATH=/dev/hd2/usr/lib/jvm/jdk1.8.0_261/lib
 # -------------------------------------------------------------------------------
 
 #Compile all TARDIS runner
