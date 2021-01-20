@@ -80,7 +80,7 @@ public class RunPdfbox {
 		o.setNumMOSATargets(2);
 		o.setGlobalTimeBudgetDuration(timeBudgetDuration);
 		o.setGlobalTimeBudgetUnit(timeBudgetTimeUnit);
-		//o.setThrottleFactorEvosuite(1.0f);
+		o.setThrottleFactorEvosuite(0.0f);
 		o.setEvosuiteTimeBudgetDuration(120);
 		o.setMaxSimpleArrayLength(600_000);
 	

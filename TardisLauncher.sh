@@ -19,7 +19,7 @@ LOG_PATH=/dev/hd2/tardisFolder/tardisLogs
 TOOLSJAR_PATH=/dev/hd2/usr/lib/jvm/jdk1.8.0_261/lib
 # -------------------------------------------------------------------------------
 
-while getopts j:e:m:t:g:d: flag
+while getopts j:e:m:t:g:d:f flag
 do
     case "${flag}" in
         j) threadJBSE=${OPTARG};;
@@ -28,6 +28,7 @@ do
         t) evosuiteTime=${OPTARG};;
         g) globalTime=${OPTARG};;
         d) testCaseDepth=${OPTARG};;
+        f) throttleFactorEvosuite=${OPTARG};;
     esac
 done
 echo "threadJBSE: $threadJBSE";
@@ -36,6 +37,7 @@ echo "mosa: $mosa";
 echo "evosuiteTime: $evosuiteTime";
 echo "globalTime: $globalTime";
 echo "testCaseDepth: $testCaseDepth";
+echo "throttleFactorEvosuite: $throttleFactorEvosuite";
 
 # -------------------------------------------------------------------------------
 # Editable variables:
@@ -108,7 +110,7 @@ seed_test_cov () {
 	for i in `seq 0 $2`; do
 		cp $1/test/$testSubPath/*_${i}_Test.java $1/seedTest/$testSubPath && cp $1/test/$testSubPath/*_${i}_Test_scaffolding.java $1/seedTest/$testSubPath
 	done
-	java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $3 $4 1 $5 --only-compute-metrics $1/seedTest
+	java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" SEEDTARDIS $3 $4 1 $5 --only-compute-metrics $1/seedTest
 }
 
 #Authzforce
@@ -120,6 +122,7 @@ if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/core-release-13.3.0\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -154,6 +157,7 @@ if [[ " ${input_array[@]} " =~ " 3 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/bcel-6.0-src\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -188,6 +192,7 @@ if [[ " ${input_array[@]} " =~ " 4 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/dubbo\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -222,6 +227,7 @@ if [[ " ${input_array[@]} " =~ " 5 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fastjson\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -256,6 +262,7 @@ if [[ " ${input_array[@]} " =~ " 6 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fescar\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -290,6 +297,7 @@ if [[ " ${input_array[@]} " =~ " 7 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/gson\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -324,6 +332,7 @@ if [[ " ${input_array[@]} " =~ " 8 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/guava\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -358,6 +367,7 @@ if [[ " ${input_array[@]} " =~ " 9 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-imaging\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -392,6 +402,7 @@ if [[ " ${input_array[@]} " =~ " 10 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/jsoup\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -426,6 +437,7 @@ if [[ " ${input_array[@]} " =~ " 11 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/commons-jxpath-1.3-src\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -460,6 +472,7 @@ if [[ " ${input_array[@]} " =~ " 12 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/la4j-0.6.0\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -494,6 +507,7 @@ if [[ " ${input_array[@]} " =~ " 13 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okhttp\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -528,6 +542,7 @@ if [[ " ${input_array[@]} " =~ " 14 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/okio\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -562,6 +577,7 @@ if [[ " ${input_array[@]} " =~ " 15 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/pdfbox\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -596,6 +612,7 @@ if [[ " ${input_array[@]} " =~ " 16 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/re2j\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -630,6 +647,7 @@ if [[ " ${input_array[@]} " =~ " 17 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/spoon\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -664,6 +682,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -673,6 +692,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/webmagic\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
@@ -726,6 +746,7 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/zxing\2/
 			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
 			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g

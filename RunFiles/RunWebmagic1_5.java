@@ -81,7 +81,7 @@ public class RunWebmagic1_5 {
 		o.setNumMOSATargets(2);
 		o.setGlobalTimeBudgetDuration(timeBudgetDuration);
 		o.setGlobalTimeBudgetUnit(timeBudgetTimeUnit);
-		//o.setThrottleFactorEvosuite(1.0f);
+		o.setThrottleFactorEvosuite(0.0f);
 		o.setEvosuiteTimeBudgetDuration(120);
 	
 		final Main m = new Main(o);

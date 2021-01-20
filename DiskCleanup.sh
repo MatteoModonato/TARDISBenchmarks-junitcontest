@@ -107,9 +107,9 @@ if [ $mode == "1" ]; then
 	fi
 	if [ $input == "11" ] || [ $input == "1" ]; then
 		mkdir -p commons-jxpath-1.3-src/tardis-tmp/old
-		for d in commons-jxpath-1.3-sr/tardis-tmp/*/; do
-			if [ $d != "commons-jxpath-1.3-sr/tardis-tmp/old/" ]; then
-				mv -v $d commons-jxpath-1.3-sr/tardis-tmp/old
+		for d in commons-jxpath-1.3-src/tardis-tmp/*/; do
+			if [ $d != "commons-jxpath-1.3-src/tardis-tmp/old/" ]; then
+				mv -v $d commons-jxpath-1.3-src/tardis-tmp/old
 			fi
 		done
 	fi
