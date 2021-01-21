@@ -19,7 +19,7 @@ LOG_PATH=/dev/hd2/tardisFolder/tardisLogs
 TOOLSJAR_PATH=/dev/hd2/usr/lib/jvm/jdk1.8.0_261/lib
 # -------------------------------------------------------------------------------
 
-while getopts j:e:m:t:g:d:f flag
+while getopts j:e:m:t:g:d:f: flag
 do
     case "${flag}" in
         j) threadJBSE=${OPTARG};;
