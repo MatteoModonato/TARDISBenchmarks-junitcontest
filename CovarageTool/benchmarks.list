@@ -249,7 +249,7 @@ DUBBO-2=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/dubbo/dubbo-common/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-cluster/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-log4j/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-logback/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-spring/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-consumer/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-provider/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-filter/dubbo-filter-cache/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-filter/dubbo-filter-validation/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-monitor/dubbo-monitor-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-monitor/dubbo-monitor-default/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-plugin/dubbo-qos/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-default/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-multicast/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-redis/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-zookeeper/target/classes,REPOSITORYHOMEPATH/dubbo/hessian-lite/target/classes
+    REPOSITORYHOMEPATH/dubbo/dubbo-common/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-cluster/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-log4j/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-logback/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-container/dubbo-container-spring/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-consumer/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-demo/dubbo-demo-provider/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-filter/dubbo-filter-cache/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-filter/dubbo-filter-validation/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-monitor/dubbo-monitor-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-monitor/dubbo-monitor-default/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-plugin/dubbo-qos/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-api/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-default/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-multicast/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-redis/target/classes,REPOSITORYHOMEPATH/dubbo/dubbo-registry/dubbo-registry-zookeeper/target/classes,REPOSITORYHOMEPATH/dubbo/hessian-lite/target/classes,REPOSITORYHOMEPATH/dubbo/dependencies/fastjson-1.2.31.jar
   )
 }
 DUBBO-3=
@@ -369,7 +369,7 @@ FASTJSON-2=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/fastjson/target/classes
+    REPOSITORYHOMEPATH/fastjson/target/classes,REPOSITORYHOMEPATH/fastjson/dependencies/hk2-api-2.5.0-b05.jar,REPOSITORYHOMEPATH/fastjson/dependencies/hk2-locator-2.5.0-b05.jar,REPOSITORYHOMEPATH/fastjson/dependencies/hk2-utils-2.5.0-b05.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-client-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-common-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-jdk-http-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-servlet-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-servlet-core-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-entity-filtering-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-guava-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-media-jaxb-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-media-json-jackson-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-server-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-test-framework-core-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-test-framework-provider-jdk-http-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jsoniter-0.9.8.jar
   )
 }
 FASTJSON-3=
@@ -381,7 +381,7 @@ FASTJSON-3=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/fastjson/target/classes
+    REPOSITORYHOMEPATH/fastjson/target/classes,REPOSITORYHOMEPATH/fastjson/dependencies/jsoniter-0.9.8.jar
   )
 }
 FASTJSON-4=
@@ -465,7 +465,7 @@ FASTJSON-10=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/fastjson/target/classes
+    REPOSITORYHOMEPATH/fastjson/target/classes,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-client-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-common-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-jdk-http-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-servlet-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-container-servlet-core-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-entity-filtering-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-guava-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-media-jaxb-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-media-json-jackson-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-server-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-test-framework-core-2.23.2.jar,REPOSITORYHOMEPATH/fastjson/dependencies/jersey-test-framework-provider-jdk-http-2.23.2.jar
   )
 }
 FESCAR-1=
@@ -1305,7 +1305,7 @@ JXPATH-8=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/commons-jxpath-1.3-src/target/classes
+    REPOSITORYHOMEPATH/commons-jxpath-1.3-src/target/classes,REPOSITORYHOMEPATH/commons-jxpath-1.3-src/dependencies/xercesImpl-2.4.0.jar
   )
 }
 JXPATH-9=
@@ -1473,7 +1473,7 @@ OKHTTP-2=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/okhttp/okhttp/target/classes
+    REPOSITORYHOMEPATH/okhttp/okhttp/target/classes,REPOSITORYHOMEPATH/okhttp/dependencies/android-4.1.1.4.jar,REPOSITORYHOMEPATH/okhttp/dependencies/opengl-api-gl1.1-android-2.1_r1.jar
   )
 }
 OKHTTP-3=
@@ -2145,7 +2145,7 @@ WEBMAGIC-2=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/webmagic/webmagic-core/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-extension/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-samples/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-saxon/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-scripts/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-selenium/target/classes
+    REPOSITORYHOMEPATH/webmagic/webmagic-core/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-extension/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-samples/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-saxon/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-scripts/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-selenium/target/classes,REPOSITORYHOMEPATH/webmagic/dependencies/netty-buffer-4.0.36.Final.jar,REPOSITORYHOMEPATH/webmagic/dependencies/netty-codec-4.0.36.Final.jar,REPOSITORYHOMEPATH/webmagic/dependencies/netty-codec-http-4.0.36.Final.jar,REPOSITORYHOMEPATH/webmagic/dependencies/netty-common-4.0.36.Final.jar,REPOSITORYHOMEPATH/webmagic/dependencies/netty-handler-4.0.36.Final.jar,REPOSITORYHOMEPATH/webmagic/dependencies/netty-transport-4.0.36.Final.jar
   )
 }
 WEBMAGIC-3=
@@ -2169,7 +2169,7 @@ WEBMAGIC-4=
   )
 
   classpath=(
-    REPOSITORYHOMEPATH/webmagic/webmagic-core/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-extension/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-samples/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-saxon/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-scripts/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-selenium/target/classes
+    REPOSITORYHOMEPATH/webmagic/webmagic-core/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-extension/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-samples/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-saxon/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-scripts/target/classes,REPOSITORYHOMEPATH/webmagic/webmagic-selenium/target/classes,REPOSITORYHOMEPATH/webmagic/dependencies/jsoup-1.10.3.jar
   )
 }
 WEBMAGIC-5=
