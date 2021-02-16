@@ -2,8 +2,8 @@ package settings;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.Level;
 import tardis.Main;
@@ -87,6 +87,11 @@ public class RunAuthzforce1 {
 		o.setEvosuiteTimeBudgetDuration(600);
 		o.setMaxSimpleArrayLength(400_000);
 		o.setVerbosity(Level.ALL);
+		o.setUninterpreted(
+				Arrays.asList("java/lang/String", "(Ljava/lang/Object;)Z", "equals"),
+				Arrays.asList("java/lang/String", "(Ljava/lang/CharSequence;)Z", "contains"),
+				Arrays.asList("java/net/URLDecoder", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "decode")
+				);
 	
 		final Main m = new Main(o);
 		m.start();
