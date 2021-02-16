@@ -5,7 +5,7 @@ import java.nio.file.Paths;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
+import org.apache.logging.log4j.Level;
 import tardis.Main;
 import tardis.Options;
 
@@ -72,6 +72,7 @@ public class RunJxpath {
 		o.setGlobalTimeBudgetUnit(timeBudgetTimeUnit);
 		o.setThrottleFactorEvosuite(0.0f);
 		o.setEvosuiteTimeBudgetDuration(15);
+		o.setVerbosity(Level.ALL);
 	
 		final Main m = new Main(o);
 		m.start();

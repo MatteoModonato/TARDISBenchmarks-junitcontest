@@ -32,6 +32,7 @@ public class CalculateResults {
 		Date dateStart = null;
 		Date dateEnd = null;
 		long executionTime = 0;
+		String coveragePattern = "Current coverage: ";
 
 		try {
 			Scanner scanner = new Scanner(file);
@@ -42,27 +43,27 @@ public class CalculateResults {
 				if(line.contains("depth: -1")) { 
 					++seedTest;
 				}
-				if(line.contains("[EVOSUITE] Generated test case")) { 
+				if(line.contains("Generated test case")) { 
 					++test;
 				}
-				if(line.contains("[EVOSUITE] Failed to generate a test case")) { 
+				if(line.contains("Failed to generate a test case")) { 
 					++infeasible;
 				}
-				if(line.contains("[JBSE    ] From test case")) { 
+				if(line.contains("From test case")) { 
 					++alternative;
 				}
 				if(line.contains("no path condition generated")) { 
 					++noAlternative;
 				}
-				if (line.contains("[JBSE    ] Current coverage")) {
+				if (line.contains(coveragePattern)) {
 					lastIndex = lineNum;
-					coverage = line.substring(28).replace(",", " -");
+					coverage = line.substring(line.lastIndexOf(coveragePattern)+coveragePattern.length()).replace(",", " -");
 				}
-				if (line.contains("[MAIN    ] Starting at")) {
-					start = line.substring(23, 42);
+				if (line.contains("tardis.Main - This is")) {
+					start = line.substring(0, 8);
 				}
-				if (line.contains("[MAIN    ] Ending at")) {
-					end = line.substring(21, 40);
+				if (line.contains("tardis.Main -") && line.contains("ends")) {
+					end = line.substring(0, 8);
 				}
 			}
 		} catch(FileNotFoundException e) { 
@@ -71,8 +72,8 @@ public class CalculateResults {
 
 		if (end != null) {
 			try {
-				dateStart = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(start);
-				dateEnd = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(end);
+				dateStart = new SimpleDateFormat("HH:mm:ss").parse(start);
+				dateEnd = new SimpleDateFormat("HH:mm:ss").parse(end);
 			} catch (ParseException e) {
 				//handle this
 			}
