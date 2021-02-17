@@ -77,6 +77,9 @@ public class CalculateResults {
 			} catch (ParseException e) {
 				//handle this
 			}
+			if (dateEnd.before(dateStart)) {
+				dateEnd = new Date(dateEnd.getTime() + TimeUnit.DAYS.toMillis(1));
+			}
 			//round up-down
 			if (getDateDiff(dateStart, dateEnd, TimeUnit.SECONDS)%60 > 30) {
 				executionTime = getDateDiff(dateStart, dateEnd, TimeUnit.MINUTES)+1;
