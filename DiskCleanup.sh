@@ -29,6 +29,7 @@ echo "[DISK CLEANUP] Move or Delete?"
 echo " ---------------------------- "
 echo "| 1)  MOVE FOLDERS           |"
 echo "| 2)  DELETE FOLDERS         |"
+echo "| 3)  INFO                   |"
 echo " ---------------------------- "
 read mode
 
@@ -237,5 +238,62 @@ if [ $mode == "2" ]; then
 		if [ $input == "19" ] || [ $input == "1" ]; then
 			rm -rf zxing/tardis-tmp && mkdir $_ && echo "[DISK CLEANUP] $_ cleaned" || echo "[DISK CLEANUP] $_: Failed"
 		fi
+	fi
+fi
+
+if [ $mode == "3" ]; then
+	if [ $input == "2" ] || [ $input == "1" ]; then
+		du -sh core-release-13.3.0/tardis-tmp
+	fi
+	if [ $input == "3" ] || [ $input == "1" ]; then
+		du -sh bcel-6.0-src/tardis-tmp
+	fi
+	if [ $input == "4" ] || [ $input == "1" ]; then
+		du -sh dubbo/tardis-tmp
+	fi
+	if [ $input == "5" ] || [ $input == "1" ]; then
+		du -sh fastjson/tardis-tmp
+	fi
+	if [ $input == "6" ] || [ $input == "1" ]; then
+		du -sh fescar/tardis-tmp
+	fi
+	if [ $input == "7" ] || [ $input == "1" ]; then
+		du -sh gson/tardis-tmp
+	fi
+	if [ $input == "8" ] || [ $input == "1" ]; then
+		du -sh guava/tardis-tmp
+	fi
+	if [ $input == "9" ] || [ $input == "1" ]; then
+		du -sh commons-imaging/tardis-tmp
+	fi
+	if [ $input == "10" ] || [ $input == "1" ]; then
+		du -sh jsoup/tardis-tmp
+	fi
+	if [ $input == "11" ] || [ $input == "1" ]; then
+		du -sh commons-jxpath-1.3-src/tardis-tmp
+	fi
+	if [ $input == "12" ] || [ $input == "1" ]; then
+		du -sh la4j-0.6.0/tardis-tmp
+	fi
+	if [ $input == "13" ] || [ $input == "1" ]; then
+		du -sh okhttp/tardis-tmp
+	fi
+	if [ $input == "14" ] || [ $input == "1" ]; then
+		du -sh okio/tardis-tmp
+	fi
+	if [ $input == "15" ] || [ $input == "1" ]; then
+		du -sh pdfbox/tardis-tmp
+	fi
+	if [ $input == "16" ] || [ $input == "1" ]; then
+		du -sh re2j/tardis-tmp
+	fi
+	if [ $input == "17" ] || [ $input == "1" ]; then
+		du -sh spoon/tardis-tmp
+	fi
+	if [ $input == "18" ] || [ $input == "1" ]; then
+		du -sh webmagic/tardis-tmp
+	fi
+	if [ $input == "19" ] || [ $input == "1" ]; then
+		du -sh zxing/tardis-tmp
 	fi
 fi
