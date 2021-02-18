@@ -16,7 +16,6 @@ public class RunBcel {
 	public static final Path Z3_PATH               = Paths.get("/home", "ubuntu", "bin", "z3");
 	
 	public static final Path JBSE_PATH             = TARDIS_WORKSPACE.resolve(Paths.get("jbse", "build", "classes", "java", "main"));
-	public static final Path EVOSUITE_PATH         = TARDIS_WORKSPACE.resolve(Paths.get("lib", "evosuite-shaded-1.0.3.jar"));
 	public static final Path EVOSUITE_MOSA_PATH    = TARDIS_WORKSPACE.resolve(Paths.get("lib", "evosuite-shaded-1.0.6-SNAPSHOT.jar"));
 	public static final Path SUSHI_LIB_PATH        = TARDIS_WORKSPACE.resolve(Paths.get("runtime", "build", "classes", "java", "main"));
 	
@@ -59,7 +58,6 @@ public class RunBcel {
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);
-		o.setUseMOSA(true);
 		o.setNumMOSATargets(2);
 		o.setGlobalTimeBudgetDuration(timeBudgetDuration);
 		o.setGlobalTimeBudgetUnit(timeBudgetTimeUnit);
