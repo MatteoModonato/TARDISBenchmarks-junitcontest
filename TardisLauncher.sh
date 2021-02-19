@@ -98,6 +98,7 @@ REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
 
 cp -f CovarageTool/benchmarks.list CovarageTool/benchmarksRepoPath.list
 sed -i "s/REPOSITORYHOMEPATH/$REPO_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
+sed -i "s/TARDISHOMEPATH/$TARDIS_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
 
 javac CalculateResults.java && echo "[TARDIS LAUNCHER] CalculateResults.java compiled" || echo "[TARDIS LAUNCHER] Failed"
 
