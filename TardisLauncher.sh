@@ -6,11 +6,11 @@ echo "[TARDIS LAUNCHER] STARTING at $(date)"
 # and TOOLSJAR_PATH to reflect the paths where you installed the code:
 
 # TARDIS_HOME_PATH: Folder where TARDIS is installed
-# Z3_PATH: 			Folder where Z3 is installed
-# REPO_HOME_PATH: 	Home folder of this repository
+# Z3_PATH:          Folder where Z3 is installed
+# REPO_HOME_PATH:   Home folder of this repository
 # GRADLE_REPO_PATH: Gradle folder
-# LOG_PATH: 		Folder where you want to save the TARDIS logs
-# TOOLSJAR_PATH: 	tools.jar path
+# LOG_PATH:         Folder where you want to save the TARDIS logs
+# TOOLSJAR_PATH:    tools.jar path
 TARDIS_HOME_PATH=/dev/hd2/tardisFolder/tardis
 Z3_PATH=/dev/hd2/usr/opt/z3/z3-4.8.9-x64-ubuntu-16.04/bin/z3
 REPO_HOME_PATH=/dev/hd2/tardisFolder/TARDISBenchmarks-junitcontest
@@ -54,6 +54,8 @@ timeoutThreshold=1
 # 1) coverage of the seeds test only 2) coverage of all the tests generated.
 # If doubleCoverageCalculation != 1 only the second one is performed.
 doubleCoverageCalculation=0
+# Set systemlogging to 1 to save system load data in systemLog.csv file.
+systemlogging=0
 # -------------------------------------------------------------------------------
 
 if [ $timeoutThreshold -lt 0 ]; then
@@ -113,6 +115,11 @@ seed_test_cov () {
 	done
 	java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -Dtardis.evosuite="$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" SEEDTARDIS $3 $4 1 $5 --only-compute-metrics $1/seedTest
 }
+
+if [ $systemlogging == "1" ]; then
+	bash SystemLoadLogging.sh &
+	SystemLoadLogging_PID=$!
+fi
 
 #Authzforce
 if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
@@ -771,6 +778,10 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
 		fi
 	done
+fi
+
+if [ $systemlogging == "1" ]; then
+	kill $SystemLoadLogging_PID
 fi
 
 echo "[TARDIS LAUNCHER] ENDING at $(date)"
