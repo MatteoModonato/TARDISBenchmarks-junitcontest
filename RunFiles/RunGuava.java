@@ -22,7 +22,7 @@ public class RunGuava {
 	public static final Path TMP_BASE_PATH         = SUBJECT_ROOT.resolve(Paths.get("tardis-tmp"));
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
-	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("guava", "target", "classes"));
+	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("guava", "target", "guava-28.2-jre.jar"));
 	public static final Path ACTIVATION_PATH       = SUBJECT_ROOT.resolve(Paths.get("dependencies", "j2objc-annotations-1.3.jar"));
 	public static final Path J2OBJC_PATH           = SUBJECT_ROOT.resolve(Paths.get("dependencies", "error_prone_annotations-2.3.4.jar"));
 	public static final Path CHECKER_PATH          = SUBJECT_ROOT.resolve(Paths.get("dependencies", "checker-qual-2.10.0.jar"));
@@ -65,7 +65,7 @@ public class RunGuava {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH, ACTIVATION_PATH, J2OBJC_PATH, CHECKER_PATH, JSR305_PATH, LIST_PATH, FAILUREACCESS_PATH);
+		o.setClassesPath(SUBJECT_PATH);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

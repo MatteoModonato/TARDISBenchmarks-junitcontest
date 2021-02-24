@@ -60,8 +60,7 @@ public class RunJxpath {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH, MOCKRUNNER_PATH, XERCES_PATH, MOCKEJB_PATH, BEANUTILS_PATH, SERVLET_API_PATH, LOGGING_PATH, JSP_PATH, JUNIT_PATH,
-				XML_APIS_PATH, CGLIB_PATH, JDOM_PATH);
+		o.setClassesPath(SUBJECT_PATH);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

@@ -57,8 +57,7 @@ public class RunOkhttp {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH, OKIO_PATH, ANDROID_PATH, COMMONS_LOG_PATH, HTTPCLIENT_PATH, HTTPCORE_PATH, COMMONS_COD_PATH, OPENGL_PATH,
-				XMLPARSER_PATH, XPP3_PATH, JSON_PATH);
+		o.setClassesPath(SUBJECT_PATH);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

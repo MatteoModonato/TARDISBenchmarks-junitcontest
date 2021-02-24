@@ -22,7 +22,8 @@ public class RunOkio {
 	public static final Path TMP_BASE_PATH         = SUBJECT_ROOT.resolve(Paths.get("tardis-tmp"));
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
-	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("okio", "target", "classes"));
+	public static final Path SUBJECT_PATH_1          = SUBJECT_ROOT.resolve(Paths.get("okio", "target", "classes"));
+	public static final Path SUBJECT_PATH_2          = SUBJECT_ROOT.resolve(Paths.get("samples", "target", "classes"));
 	public static final Path HAMCREST_CORE_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "hamcrest-core-1.3.jar"));
 	public static final Path JUNIT_PATH            = SUBJECT_ROOT.resolve(Paths.get("dependencies", "junit-4.11.jar"));
 	public static final Path ANIMAL_SNIFFER_PATH   = SUBJECT_ROOT.resolve(Paths.get("dependencies", "animal-sniffer-annotations-1.10.jar"));
@@ -53,7 +54,7 @@ public class RunOkio {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH, HAMCREST_CORE_PATH, JUNIT_PATH, ANIMAL_SNIFFER_PATH, JSR_PATH);
+		o.setClassesPath(SUBJECT_PATH_1, SUBJECT_PATH_2);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

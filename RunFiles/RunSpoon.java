@@ -22,7 +22,7 @@ public class RunSpoon {
 	public static final Path TMP_BASE_PATH         = SUBJECT_ROOT.resolve(Paths.get("tardis-tmp"));
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
-	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("target", "classes"));
+	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("target", "spoon-core-7.2.0.jar"));
 	public static final Path COMMANDS_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "org.eclipse.core.commands-3.9.200.jar"));
 	public static final Path RUNTIME_PATH          = SUBJECT_ROOT.resolve(Paths.get("dependencies", "org.eclipse.core.runtime-3.15.100.jar"));
 	public static final Path PLEXUS_U_PATH         = SUBJECT_ROOT.resolve(Paths.get("dependencies", "plexus-utils-3.0.24.jar"));

@@ -23,7 +23,25 @@ public class RunDubbo {
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
 	public static final Path SUBJECT_PATH_1        = SUBJECT_ROOT.resolve(Paths.get("dubbo-common", "target", "classes"));
-	public static final Path SUBJECT_PATH_2        = SUBJECT_ROOT.resolve(Paths.get("hessian-lite", "target", "classes"));
+    public static final Path SUBJECT_PATH_2        = SUBJECT_ROOT.resolve(Paths.get("dubbo-cluster", "target", "classes"));
+    public static final Path SUBJECT_PATH_3        = SUBJECT_ROOT.resolve(Paths.get("dubbo-container", "dubbo-container-api", "target", "classes"));
+    public static final Path SUBJECT_PATH_4        = SUBJECT_ROOT.resolve(Paths.get("dubbo-container", "dubbo-container-log4j", "target", "classes"));
+    public static final Path SUBJECT_PATH_5        = SUBJECT_ROOT.resolve(Paths.get("dubbo-container", "dubbo-container-logback", "target", "classes"));
+    public static final Path SUBJECT_PATH_6        = SUBJECT_ROOT.resolve(Paths.get("dubbo-container", "dubbo-container-spring", "target", "classes"));
+    public static final Path SUBJECT_PATH_7        = SUBJECT_ROOT.resolve(Paths.get("dubbo-demo", "dubbo-demo-api", "target", "classes"));
+    public static final Path SUBJECT_PATH_8        = SUBJECT_ROOT.resolve(Paths.get("dubbo-demo", "dubbo-demo-consumer", "target", "classes"));
+    public static final Path SUBJECT_PATH_9        = SUBJECT_ROOT.resolve(Paths.get("dubbo-demo", "dubbo-demo-provider", "target", "classes"));
+    public static final Path SUBJECT_PATH_10       = SUBJECT_ROOT.resolve(Paths.get("dubbo-filter", "dubbo-filter-cache", "target", "classes"));
+    public static final Path SUBJECT_PATH_11       = SUBJECT_ROOT.resolve(Paths.get("dubbo-filter", "dubbo-filter-validation", "target", "classes"));
+    public static final Path SUBJECT_PATH_12       = SUBJECT_ROOT.resolve(Paths.get("dubbo-monitor", "dubbo-monitor-api", "target", "classes"));
+    public static final Path SUBJECT_PATH_13       = SUBJECT_ROOT.resolve(Paths.get("dubbo-monitor", "dubbo-monitor-default", "target", "classes"));
+    public static final Path SUBJECT_PATH_14       = SUBJECT_ROOT.resolve(Paths.get("dubbo-plugin", "dubbo-qos", "target", "classes"));
+    public static final Path SUBJECT_PATH_15       = SUBJECT_ROOT.resolve(Paths.get("dubbo-registry", "dubbo-registry-api", "target", "classes"));
+    public static final Path SUBJECT_PATH_16       = SUBJECT_ROOT.resolve(Paths.get("dubbo-registry", "dubbo-registry-default", "target", "classes"));
+    public static final Path SUBJECT_PATH_17       = SUBJECT_ROOT.resolve(Paths.get("dubbo-registry", "dubbo-registry-multicast", "target", "classes"));
+    public static final Path SUBJECT_PATH_18       = SUBJECT_ROOT.resolve(Paths.get("dubbo-registry", "dubbo-registry-redis", "target", "classes"));
+    public static final Path SUBJECT_PATH_19       = SUBJECT_ROOT.resolve(Paths.get("dubbo-registry", "dubbo-registry-zookeeper", "target", "classes"));
+    public static final Path SUBJECT_PATH_20       = SUBJECT_ROOT.resolve(Paths.get("hessian-lite", "target", "classes"));
 	public static final Path CGLIB_CORE_PATH       = SUBJECT_ROOT.resolve(Paths.get("dependencies", "cglib-nodep-2.2.jar"));
 	public static final Path JMOCKIT_CORE_PATH     = SUBJECT_ROOT.resolve(Paths.get("dependencies", "jmockit-1.33.jar"));
 	public static final Path EASYMOCK_CORE_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "easymock-3.4.jar"));
@@ -69,9 +87,9 @@ public class RunDubbo {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH_1, SUBJECT_PATH_2, CGLIB_CORE_PATH, JMOCKIT_CORE_PATH, EASYMOCK_CORE_PATH, HAMCREST_CORE_PATH, JSON_IO_PATH, JAVA_UTIL_PATH, JUNIT_PATH,
-				JACKSON_PATH, FST_PATH, KRYO_PATH, OBJENESIS_PATH, MINLOG_PATH, ASM_PATH, REFLECTASM_PATH, KTYO_PATH, FASTJSON_PATH, JAVASSIST_PATH, LOG4J_PATH,
-				CLOGGING_PATH, SLF4J_PATH);
+		o.setClassesPath(SUBJECT_PATH_1, SUBJECT_PATH_2, SUBJECT_PATH_3, SUBJECT_PATH_4, SUBJECT_PATH_5, SUBJECT_PATH_6, SUBJECT_PATH_7, SUBJECT_PATH_8,
+				SUBJECT_PATH_9, SUBJECT_PATH_10, SUBJECT_PATH_11, SUBJECT_PATH_12, SUBJECT_PATH_13, SUBJECT_PATH_14, SUBJECT_PATH_15, SUBJECT_PATH_16,
+				SUBJECT_PATH_17, SUBJECT_PATH_18, SUBJECT_PATH_19, SUBJECT_PATH_20);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

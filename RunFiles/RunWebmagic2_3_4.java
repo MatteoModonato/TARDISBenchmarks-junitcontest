@@ -22,7 +22,13 @@ public class RunWebmagic2_3_4 {
 	public static final Path TMP_BASE_PATH         = SUBJECT_ROOT.resolve(Paths.get("tardis-tmp"));
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
+	public static final Path SUBJECT_PATH_1    = SUBJECT_ROOT.resolve(Paths.get("webmagic-extension", "target", "classes"));
 	public static final Path SUBJECT_PATH_4    = SUBJECT_ROOT.resolve(Paths.get("webmagic-core", "target", "classes"));
+    public static final Path SUBJECT_PATH_5    = SUBJECT_ROOT.resolve(Paths.get("webmagic-samples", "target", "classes"));
+    public static final Path SUBJECT_PATH_6    = SUBJECT_ROOT.resolve(Paths.get("webmagic-saxon", "target", "classes"));
+    public static final Path SUBJECT_PATH_7    = SUBJECT_ROOT.resolve(Paths.get("webmagic-scripts", "target", "classes"));
+    public static final Path SUBJECT_PATH_8    = SUBJECT_ROOT.resolve(Paths.get("webmagic-selenium", "target", "classes"));
+
 	public static final Path ASM_PATH          = SUBJECT_ROOT.resolve(Paths.get("dependencies", "asm-5.0.4.jar"));
 	public static final Path FASTJSON_PATH     = SUBJECT_ROOT.resolve(Paths.get("dependencies", "fastjson-1.2.28.jar"));
 	public static final Path ACCESSORS_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "accessors-smart-1.2.jar"));
@@ -75,10 +81,7 @@ public class RunWebmagic2_3_4 {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH_4, ASM_PATH, FASTJSON_PATH, ACCESSORS_PATH, JSON_SMART_PATH, JSON_PATH, COMMONS_PATH, JSOUP_PATH, ASSERTJ_PATH, CCOLLECTIONS_PATH,
-				SLF4J_LOG_PATH, MOCKITO_PATH, SLF4J_PATH, JCORE_PATH, JANNOTATIONS_PATH, JDATABIND_PATH, GUAVA_PATH, FREEMAKER_PATH, NCOMMON_PATH, NBUFFER_PATH,
-				NHANDLER_PATH, NTRANSPORT_PATH, NCODEC_PATH, NCODEC_HTTP_PATH, MOCO_PATH, XSOUP_PATH, CLANG_PATH, HAMCREST_PATH, JUNIT_PATH, CCODEC_PATH, CLOGGING_PATH,
-				HTTPCORE_PATH, HTTCLIENT_PATH);
+		o.setClassesPath(SUBJECT_PATH_1, SUBJECT_PATH_4, SUBJECT_PATH_5, SUBJECT_PATH_6, SUBJECT_PATH_7, SUBJECT_PATH_8);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

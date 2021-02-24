@@ -54,8 +54,7 @@ public class RunJsoup {
 		o.setTmpDirectoryBase(TMP_BASE_PATH);
 		o.setZ3Path(Z3_PATH);
 		o.setJBSELibraryPath(JBSE_PATH);
-		o.setClassesPath(SUBJECT_PATH, JETTYSEC_PATH, JETTYSER_PATH, JETTYIO_PATH, JETTYUTIL_PATH, JETTYHTTP_PATH, JETTYSERA_PATH, JETTYSERVER_PATH,
-				GSON_PATH, HAMCREST_PATH, JUNIT_PATH);
+		o.setClassesPath(SUBJECT_PATH);
 		o.setOutDirectory(OUT_PATH);
 		o.setSushiLibPath(SUSHI_LIB_PATH);
 		o.setEvosuitePath(EVOSUITE_MOSA_PATH);

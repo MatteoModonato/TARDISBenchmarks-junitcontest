@@ -22,7 +22,7 @@ public class RunPdfbox {
 	public static final Path TMP_BASE_PATH         = SUBJECT_ROOT.resolve(Paths.get("tardis-tmp"));
 	public static final Path OUT_PATH              = SUBJECT_ROOT.resolve(Paths.get("tardis-test"));
 
-	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("pdfbox", "target", "classes"));
+	public static final Path SUBJECT_PATH          = SUBJECT_ROOT.resolve(Paths.get("pdfbox", "target", "pdfbox-2.0.18.jar"));
 	public static final Path BCPKIX_PATH           = SUBJECT_ROOT.resolve(Paths.get("dependencies", "bcpkix-jdk15on-1.60.jar"));
 	public static final Path BCPROV_ANNO_PATH      = SUBJECT_ROOT.resolve(Paths.get("dependencies", "bcprov-jdk15on-1.60.jar"));
 	public static final Path DIFFUTILS_API_PATH    = SUBJECT_ROOT.resolve(Paths.get("dependencies", "diffutils-1.3.0.jar"));
