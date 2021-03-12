@@ -80,6 +80,7 @@ public class RunWebmagic1_5 {
 		o.setThrottleFactorEvosuite(0.0f);
 		o.setEvosuiteTimeBudgetDuration(120);
 		o.setVerbosity(Level.ALL);
+		o.setEvosuiteNoDependency(true);
 		o.setUninterpreted(
 				Arrays.asList("java/lang/String", "(Ljava/lang/Object;)Z", "equals"),
 				Arrays.asList("java/lang/String", "(Ljava/lang/CharSequence;)Z", "contains"),
