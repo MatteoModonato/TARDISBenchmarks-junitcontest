@@ -87,6 +87,9 @@ echo "|  16) RE2J              |"
 echo "|  17) SPOON             |"
 echo "|  18) WEBMAGIC          |"
 echo "|  19) ZXING             |"
+echo "|  20) WEKA              |"
+echo "|  21) FASTJSON 9th      |"
+echo "|  22) GUAVA 9th         |"
 echo " ------------------------ "
 read input
 input_array=($input)
@@ -772,6 +775,111 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			seed_test_cov $TMPDIR "$(($seedTestNum-1))" $BENCHMARK $LOG_PATH/$dt/ZXING $globalTime
 		fi
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/ZXING 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
+	done
+fi
+
+#Weka
+if [[ " ${input_array[@]} " =~ " 20 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
+	mkdir $LOG_PATH/$dt/WEKA
+	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/WEKA
+	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/weka\2/
+			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
+			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
+			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
+			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
+			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWeka.java
+	for BENCHMARK in WEKA-673 WEKA-460 WEKA-983 WEKA-741 WEKA-148 WEKA-53 WEKA-303 WEKA-1093 WEKA-1127 WEKA-128 WEKA-119 WEKA-302 WEKA-576 WEKA-631 WEKA-7 WEKA-592 WEKA-871 WEKA-79 WEKA-763 WEKA-1088 WEKA-1006 WEKA-563 WEKA-151 WEKA-143 WEKA-577
+	do
+		echo "[TARDIS LAUNCHER] Run benchmark WEKA -- Target class: $BENCHMARK"
+		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunWeka.java
+		bash CompileAndMove.sh
+		timeout -s 9 $timeoutTime java $javaMem -cp $REPO_HOME_PATH/weka/dist/weka-stable-3.8.5-SNAPSHOT.jar:$REPO_HOME_PATH/weka/dist/settings:$TARDIS_HOME_PATH/master/build/libs/tardis-master-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/runtime/build/libs/sushi-lib-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/jbse/build/libs/jbse-0.10.0-SNAPSHOT-shaded.jar:$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/args4j/args4j/2.32/1ccacebdf8f2db750eb09a402969050f27695fb7/args4j-2.32.jar:$TOOLSJAR_PATH/tools.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/com.github.javaparser/javaparser-core/3.15.9/998ab964f295e6cecd4467a76d4a6369a8193e5a/javaparser-core-3.15.9.jar:$TARDIS_HOME_PATH/jbse/libs/javassist.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.5.201505241946/1ea906dc5201d2a1bc0604f8650534d4bcaf4c95/org.jacoco.core-0.7.5.201505241946.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/f69b5f7d96cec0d448acf1c1a266584170c9643b/asm-debug-all-5.0.1.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.14.0/23cdb2c6babad9b2b0dcf47c6a2c29d504e4c7a8/log4j-api-2.14.0.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.14.0/e257b0562453f73eabac1bc3181ba33e79d193ed/log4j-core-2.14.0.jar RunWeka |& tee $LOG_PATH/$dt/WEKA/tardisLog$BENCHMARK.txt
+		echo "[TARDIS LAUNCHER] Tardis execution finished. Calculate results"
+		seedTestNum="$(java CalculateResults $LOG_PATH/$dt/WEKA/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Weka$BENCHMARK)"
+		TMPDIR=$(ls -td $REPO_HOME_PATH/weka/tardis-tmp/* | head -1)
+		if [ $doubleCoverageCalculation == "1" ]; then
+			seed_test_cov $TMPDIR "$(($seedTestNum-1))" $BENCHMARK $LOG_PATH/$dt/WEKA $globalTime
+		fi
+		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/WEKA 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
+	done
+fi
+
+#Fastjson9th
+if [[ " ${input_array[@]} " =~ " 21 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
+	mkdir $LOG_PATH/$dt/FASTJSON9TH
+	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/FASTJSON9TH
+	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/fastjson9th\2/
+			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
+			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
+			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
+			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
+			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFastjson9th.java
+	for BENCHMARK in FASTJSON-999 FASTJSON-11 FASTJSON-17 FASTJSON-29 FASTJSON-36 FASTJSON-45 FASTJSON-49 FASTJSON-57 FASTJSON-61 FASTJSON-65 FASTJSON-72 FASTJSON-78 FASTJSON-79 FASTJSON-86 FASTJSON-94 FASTJSON_99 FASTJSON_100 FASTJSON_108 FASTJSON_113 FASTJSON_120
+	do
+		echo "[TARDIS LAUNCHER] Run benchmark FASTJSON9TH -- Target class: $BENCHMARK"
+		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunFastjson9th.java
+		bash CompileAndMove.sh
+		timeout -s 9 $timeoutTime java $javaMem -cp $REPO_HOME_PATH/fastjson9th/target/fastjson-1.2.63_preview_01.jar:$REPO_HOME_PATH/fastjson9th/target/settings:$TARDIS_HOME_PATH/master/build/libs/tardis-master-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/runtime/build/libs/sushi-lib-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/jbse/build/libs/jbse-0.10.0-SNAPSHOT-shaded.jar:$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/args4j/args4j/2.32/1ccacebdf8f2db750eb09a402969050f27695fb7/args4j-2.32.jar:$TOOLSJAR_PATH/tools.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/com.github.javaparser/javaparser-core/3.15.9/998ab964f295e6cecd4467a76d4a6369a8193e5a/javaparser-core-3.15.9.jar:$TARDIS_HOME_PATH/jbse/libs/javassist.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.5.201505241946/1ea906dc5201d2a1bc0604f8650534d4bcaf4c95/org.jacoco.core-0.7.5.201505241946.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/f69b5f7d96cec0d448acf1c1a266584170c9643b/asm-debug-all-5.0.1.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.14.0/23cdb2c6babad9b2b0dcf47c6a2c29d504e4c7a8/log4j-api-2.14.0.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.14.0/e257b0562453f73eabac1bc3181ba33e79d193ed/log4j-core-2.14.0.jar RunFastjson9th |& tee $LOG_PATH/$dt/FASTJSON9TH/tardisLog$BENCHMARK.txt
+		echo "[TARDIS LAUNCHER] Tardis execution finished. Calculate results"
+		seedTestNum="$(java CalculateResults $LOG_PATH/$dt/FASTJSON9TH/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Fastjson9th$BENCHMARK)"
+		TMPDIR=$(ls -td $REPO_HOME_PATH/fastjson9th/tardis-tmp/* | head -1)
+		if [ $doubleCoverageCalculation == "1" ]; then
+			seed_test_cov $TMPDIR "$(($seedTestNum-1))" $BENCHMARK $LOG_PATH/$dt/FASTJSON9TH $globalTime
+		fi
+		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/FASTJSON9TH 1 $globalTime --only-compute-metrics $TMPDIR/test
+		#Clean filesystem if necessary
+		foldersize=$(du -sm $TMPDIR | cut -f1)
+		if [[ $foldersize -gt $sizeThreshold ]]; then
+			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+		fi
+	done
+fi
+
+#Guava9th
+if [[ " ${input_array[@]} " =~ " 22 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
+	mkdir $LOG_PATH/$dt/GUAVA9TH
+	cp -f $REPO_HOME_PATH/CovarageTool/runtool $LOG_PATH/$dt/GUAVA9TH
+	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
+			16s/\(Paths.get(\"\).*\(\");\)/\1$Z3_PATH_ESC\2/
+			15s/\(Paths.get(\"\).*\(\");\)/\1$REPO_HOME_PATH_ESC\/guava9th\2/
+			s/\(setNumOfThreadsJBSE(\).*\();\)/\1$threadJBSE\2/g
+			s/\(setNumOfThreadsEvosuite(\).*\();\)/\1$threadEvosuite\2/g
+			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
+			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
+			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
+			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGuava9th.java
+	for BENCHMARK in GUAVA-108 GUAVA-134 GUAVA-71 GUAVA-273 GUAVA-46 GUAVA-11 GUAVA-999 GUAVA-998 GUAVA-200 GUAVA-237 GUAVA-254 GUAVA-192 GUAVA-231 GUAVA-96 GUAVA-267 GUAVA-232 GUAVA-227 GUAVA-156 GUAVA-82 GUAVA-118 GUAVA-61 GUAVA-199 GUAVA-226 GUAVA-213 GUAVA-148
+	do
+		echo "[TARDIS LAUNCHER] Run benchmark GUAVA9TH -- Target class: $BENCHMARK"
+		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunGuava9th.java
+		bash CompileAndMove.sh
+		timeout -s 9 $timeoutTime java $javaMem -cp $REPO_HOME_PATH/guava9th/guava/target/guava-29.0-jre.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/failureaccess-1.0.1.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/checker-qual-2.11.1.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/error_prone_annotations-2.3.4.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/srczip-999.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/j2objc-annotations-1.3.jar:$REPO_HOME_PATH/guava9th/guava/target/dependency/jsr305-3.0.2.jar:$REPO_HOME_PATH/guava9th/guava/target/settings:$TARDIS_HOME_PATH/master/build/libs/tardis-master-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/runtime/build/libs/sushi-lib-0.2.0-SNAPSHOT.jar:$TARDIS_HOME_PATH/jbse/build/libs/jbse-0.10.0-SNAPSHOT-shaded.jar:$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/args4j/args4j/2.32/1ccacebdf8f2db750eb09a402969050f27695fb7/args4j-2.32.jar:$TOOLSJAR_PATH/tools.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/com.github.javaparser/javaparser-core/3.15.9/998ab964f295e6cecd4467a76d4a6369a8193e5a/javaparser-core-3.15.9.jar:$TARDIS_HOME_PATH/jbse/libs/javassist.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.jacoco/org.jacoco.core/0.7.5.201505241946/1ea906dc5201d2a1bc0604f8650534d4bcaf4c95/org.jacoco.core-0.7.5.201505241946.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.1/f69b5f7d96cec0d448acf1c1a266584170c9643b/asm-debug-all-5.0.1.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.14.0/23cdb2c6babad9b2b0dcf47c6a2c29d504e4c7a8/log4j-api-2.14.0.jar:$GRADLE_REPO_PATH/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.14.0/e257b0562453f73eabac1bc3181ba33e79d193ed/log4j-core-2.14.0.jar RunGuava9th |& tee $LOG_PATH/$dt/GUAVA9TH/tardisLog$BENCHMARK.txt
+		echo "[TARDIS LAUNCHER] Tardis execution finished. Calculate results"
+		seedTestNum="$(java CalculateResults $LOG_PATH/$dt/GUAVA9TH/tardisLog$BENCHMARK.txt $LOG_PATH/$dt/Results.csv Guava9th$BENCHMARK)"
+		TMPDIR=$(ls -td $REPO_HOME_PATH/guava9th/tardis-tmp/* | head -1)
+		if [ $doubleCoverageCalculation == "1" ]; then
+			seed_test_cov $TMPDIR "$(($seedTestNum-1))" $BENCHMARK $LOG_PATH/$dt/GUAVA9TH $globalTime
+		fi
+		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" TARDIS $BENCHMARK $LOG_PATH/$dt/GUAVA9TH 1 $globalTime --only-compute-metrics $TMPDIR/test
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then

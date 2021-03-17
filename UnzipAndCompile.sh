@@ -13,6 +13,8 @@ if [ $UnzipBenchmarks == "y" ]; then
 			cat zxingSplit.z01 zxingSplit.zip > zxing_joined.zip && unzip zxing_joined.zip && echo "[UNZIP AND COMPILE SCRIPT] $z unzipped" || echo "[UNZIP AND COMPILE SCRIPT] $z: Failed"
 		elif [ $z == "pdfboxSplit.zip" ]; then
 			zip -F pdfboxSplit.zip --out pdfbox.zip && unzip pdfbox.zip && echo "[UNZIP AND COMPILE SCRIPT] $z unzipped" || echo "[UNZIP AND COMPILE SCRIPT] $z: Failed"
+		elif [ $z == "guava9thSplit.zip" ]; then
+			zip -F guava9thSplit.zip --out guava9th.zip && unzip guava9th.zip && echo "[UNZIP AND COMPILE SCRIPT] $z unzipped" || echo "[UNZIP AND COMPILE SCRIPT] $z: Failed"
 		else
 			unzip $z && echo "[UNZIP AND COMPILE SCRIPT] $z unzipped" || echo "[UNZIP AND COMPILE SCRIPT] $z: Failed"
 		fi

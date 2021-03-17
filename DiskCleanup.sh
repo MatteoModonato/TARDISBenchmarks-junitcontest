@@ -22,6 +22,9 @@ echo "| 16) RE2J                   |"
 echo "| 17) SPOON                  |"
 echo "| 18) WEBMAGIC               |"
 echo "| 19) ZXING                  |"
+echo "| 20) WEKA                   |"
+echo "| 21) FASTJSON 9th           |"
+echo "| 22) GUAVA 9th              |"
 echo " ---------------------------- "
 read input
 
@@ -178,6 +181,30 @@ if [ $mode == "1" ]; then
 			fi
 		done
 	fi
+	if [ $input == "20" ] || [ $input == "1" ]; then
+		mkdir -p weka/tardis-tmp/old
+		for d in weka/tardis-tmp/*/; do
+			if [ $d != "weka/tardis-tmp/old/" ]; then
+				mv -v $d weka/tardis-tmp/old
+			fi
+		done
+	fi
+	if [ $input == "21" ] || [ $input == "1" ]; then
+		mkdir -p fastjson9th/tardis-tmp/old
+		for d in fastjson9th/tardis-tmp/*/; do
+			if [ $d != "fastjson9th/tardis-tmp/old/" ]; then
+				mv -v $d fastjson9th/tardis-tmp/old
+			fi
+		done
+	fi
+	if [ $input == "22" ] || [ $input == "1" ]; then
+		mkdir -p guava9th/tardis-tmp/old
+		for d in guava9th/tardis-tmp/*/; do
+			if [ $d != "guava9th/tardis-tmp/old/" ]; then
+				mv -v $d guava9th/tardis-tmp/old
+			fi
+		done
+	fi
 fi
 
 if [ $mode == "2" ]; then
@@ -238,6 +265,15 @@ if [ $mode == "2" ]; then
 		if [ $input == "19" ] || [ $input == "1" ]; then
 			rm -rf zxing/tardis-tmp && mkdir $_ && echo "[DISK CLEANUP] $_ cleaned" || echo "[DISK CLEANUP] $_: Failed"
 		fi
+		if [ $input == "20" ] || [ $input == "1" ]; then
+			rm -rf weka/tardis-tmp && mkdir $_ && echo "[DISK CLEANUP] $_ cleaned" || echo "[DISK CLEANUP] $_: Failed"
+		fi
+		if [ $input == "21" ] || [ $input == "1" ]; then
+			rm -rf fastjson9th/tardis-tmp && mkdir $_ && echo "[DISK CLEANUP] $_ cleaned" || echo "[DISK CLEANUP] $_: Failed"
+		fi
+		if [ $input == "22" ] || [ $input == "1" ]; then
+			rm -rf guava9th/tardis-tmp && mkdir $_ && echo "[DISK CLEANUP] $_ cleaned" || echo "[DISK CLEANUP] $_: Failed"
+		fi
 	fi
 fi
 
@@ -295,5 +331,14 @@ if [ $mode == "3" ]; then
 	fi
 	if [ $input == "19" ] || [ $input == "1" ]; then
 		du -sh zxing/tardis-tmp
+	fi
+	if [ $input == "20" ] || [ $input == "1" ]; then
+		du -sh weka/tardis-tmp
+	fi
+	if [ $input == "21" ] || [ $input == "1" ]; then
+		du -sh fastjson9th/tardis-tmp
+	fi
+	if [ $input == "22" ] || [ $input == "1" ]; then
+		du -sh guava9th/tardis-tmp
 	fi
 fi

@@ -113,3 +113,18 @@ fi
 if [ -d pdfbox ]; then
 	mkdir pdfbox/pdfbox/target/classes/settings; mv RunFiles/RunPdfbox.class $_ && echo "[COMPILE AND MOVE SCRIPT] Moved RunPdfbox.class to $_" || echo "[COMPILE AND MOVE SCRIPT] Failed"
 fi
+
+#Weka
+if [ -d weka ]; then
+	mkdir weka/dist/settings; mv RunFiles/RunWeka.class $_ && echo "[COMPILE AND MOVE SCRIPT] Moved RunWeka.class to $_" || echo "[COMPILE AND MOVE SCRIPT] Failed"
+fi
+
+#Fastjson9th
+if [ -d fastjson9th ]; then
+	mkdir fastjson9th/target/settings; mv RunFiles/RunFastjson9th.class $_ && echo "[COMPILE AND MOVE SCRIPT] Moved RunFastjson9th.class to $_" || echo "[COMPILE AND MOVE SCRIPT] Failed"
+fi
+
+#Guava9th
+if [ -d guava9th ]; then
+	mkdir guava9th/guava/target/settings; mv RunFiles/RunGuava9th.class $_ && echo "[COMPILE AND MOVE SCRIPT] Moved RunGuava9th.class to $_" || echo "[COMPILE AND MOVE SCRIPT] Failed"
+fi
