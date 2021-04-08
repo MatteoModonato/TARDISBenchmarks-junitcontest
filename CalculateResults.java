@@ -9,6 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CalculateResults {
 
@@ -34,6 +36,10 @@ public class CalculateResults {
 		long executionTime = 0;
 		String coveragePattern = "Current coverage: ";
 
+		String lastSeedLine = null;
+		String startSeedSubStringFrom = "Generated test case ";
+		String endSeedSubStringAt = ", depth: -1,";
+
 		try {
 			Scanner scanner = new Scanner(file);
 			int lineNum = 0;
@@ -42,6 +48,7 @@ public class CalculateResults {
 				lineNum++;
 				if(line.contains("depth: -1")) { 
 					++seedTest;
+					lastSeedLine = line;
 				}
 				if(line.contains("Generated test case")) { 
 					++test;
@@ -110,7 +117,18 @@ public class CalculateResults {
 			//handle this
 		}
 
-		System.out.println(seedTest);
+		if (lastSeedLine != null) {
+			String subSeed = lastSeedLine.substring(lastSeedLine.lastIndexOf(startSeedSubStringFrom) + startSeedSubStringFrom.length(), lastSeedLine.lastIndexOf(endSeedSubStringAt));
+			Pattern p = Pattern.compile(Pattern.quote("_") + "(\\d*?)" + Pattern.quote("_Test"));
+			Matcher m = p.matcher(subSeed);
+			while (m.find()) {
+				int retVal = Integer.parseInt(m.group(1));
+				System.out.println(retVal + 1);
+			}
+		}
+		else {
+			System.out.println(seedTest);
+		}
 
 	}
 
