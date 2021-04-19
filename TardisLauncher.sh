@@ -43,7 +43,7 @@ echo "throttleFactorEvosuite: $throttleFactorEvosuite";
 # Editable variables:
 
 # Set javaMem variable with xmx and/or xms value (-Xms16G -Xmx16G)
-javaMem="-Xms16G -Xmx16G"
+javaMem="-Xms80G -Xmx80G -Xss1G"
 # Set sizeThreshold variable to choose the maximum size (MB) of tardis-tmp 
 # folders. Tmp folders will be deleted if the size is greater than sizeThreshold.
 sizeThreshold=1000
@@ -53,9 +53,9 @@ timeoutThreshold=1
 # Set doubleCoverageCalculation to 1 to perform a double coverage calculation:
 # 1) coverage of the seeds test only 2) coverage of all the tests generated.
 # If doubleCoverageCalculation != 1 only the second one is performed.
-doubleCoverageCalculation=0
+doubleCoverageCalculation=1
 # Set systemlogging to 1 to save system load data in systemLog.csv file.
-systemlogging=0
+systemlogging=1
 # -------------------------------------------------------------------------------
 
 if [ $timeoutThreshold -lt 0 ]; then
