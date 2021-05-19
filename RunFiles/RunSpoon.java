@@ -99,11 +99,7 @@ public class RunSpoon {
 		o.setMaxSimpleArrayLength(400_000);
 		o.setVerbosity(Level.ALL);
 		o.setEvosuiteNoDependency(true);
-		o.setUninterpreted(
-				Arrays.asList("java/lang/String", "(Ljava/lang/Object;)Z", "equals"),
-				Arrays.asList("java/lang/String", "(Ljava/lang/CharSequence;)Z", "contains"),
-				Arrays.asList("java/net/URLDecoder", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", "decode")
-				);
+		o.setUseIndexInfeasibility(false);
 	
 		final Main m = new Main(o);
 		m.start();
