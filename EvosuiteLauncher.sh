@@ -5,12 +5,14 @@ echo "[EVOSUITE LAUNCHER] STARTING at $(date)"
 # Edit EVOSUITE_PATH, REPO_HOME_PATH and RESULTS_PATH to 
 # reflect the paths where you installed the code:
 
-# EVOSUITE_PATH:  Evosuite.jar path
-# REPO_HOME_PATH: Home folder of this repository
-# RESULTS_PATH:   Folder where you want to save the Evosuite results
+# EVOSUITE_PATH:    Evosuite.jar path
+# REPO_HOME_PATH:   Home folder of this repository
+# RESULTS_PATH:     Folder where you want to save the Evosuite results
+# TARDIS_HOME_PATH: Folder where TARDIS is installed (for coverage tool classpath only)
 EVOSUITE_PATH=/dev/hd2/evosuiteFolder/evosuite-1.1.0.jar
 REPO_HOME_PATH=/dev/hd2/tardisFolder/TARDISBenchmarks-junitcontest
 RESULTS_PATH=/dev/hd2/evosuiteFolder/evosuiteLogs
+TARDIS_HOME_PATH=/dev/hd2/tardisFolder/tardis
 # -------------------------------------------------------------------------------
 
 while getopts s: flag
@@ -53,9 +55,11 @@ dt=$(date +%Y_%m_%d_%H_%M_%S)
 mkdir $RESULTS_PATH/$dt
 
 REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
+TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')
 
 cp -f CovarageTool/benchmarks.list CovarageTool/benchmarksRepoPath.list
 sed -i "s/REPOSITORYHOMEPATH/$REPO_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
+sed -i "s/TARDISHOMEPATH/$TARDIS_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
 
 #Authzforce
 if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
