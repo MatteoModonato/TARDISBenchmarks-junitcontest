@@ -56,10 +56,14 @@ mkdir $RESULTS_PATH/$dt
 
 REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
 TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')
+TARDIS_HOME_PATH_EVOSUITE=$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar
+TARDIS_HOME_PATH_ESC_EVOSUITE=$(echo $TARDIS_HOME_PATH_EVOSUITE | sed 's_/_\\/_g')
+EVOSUITE_PATH_ESC=$(echo $EVOSUITE_PATH | sed 's_/_\\/_g')
 
 cp -f CovarageTool/benchmarks.list CovarageTool/benchmarksRepoPath.list
 sed -i "s/REPOSITORYHOMEPATH/$REPO_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
 sed -i "s/TARDISHOMEPATH/$TARDIS_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
+sed -i "s/$TARDIS_HOME_PATH_ESC_EVOSUITE/$EVOSUITE_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
 
 #Authzforce
 if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
