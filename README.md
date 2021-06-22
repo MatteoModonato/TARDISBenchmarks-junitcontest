@@ -30,5 +30,15 @@ Eg. `bash EvosuiteLauncher.sh -s 120`
 
 The script computes the test suite metrics after each Evosuite run.
 
+#### SushiLauncher.sh
+Run **SushiLauncher.sh** script to run [SUSHI](https://github.com/pietrobraione/sushi) on a single program or on a multiple benchmarks. Pass the following parameter to set SUSHI configuration: 
+* number of Evosuite threads (-e)
+* number of mosa (-m)
+* global time budget (-g)
+
+Eg. `bash SushiLauncher.sh -e 5 -m 10 -g 1200`
+
+The script computes the test suite metrics after each Sushi run.
+
 #### DiskCleanup.sh
 Run **DiskCleanup.sh** script to move *tardis-tmp* subfolders to *tardis-tmp/old* or to empty all *tardis-tmp* folders.
