@@ -95,7 +95,7 @@ read input
 input_array=($input)
 
 dt=$(date +%Y_%m_%d_%H_%M_%S)
-mkdir $LOG_PATH/$dt
+mkdir -p $LOG_PATH/$dt
 
 TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')
 Z3_PATH_ESC=$(echo $Z3_PATH | sed 's_/_\\/_g')

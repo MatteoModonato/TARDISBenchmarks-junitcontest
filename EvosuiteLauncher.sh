@@ -52,7 +52,7 @@ read input
 input_array=($input)
 
 dt=$(date +%Y_%m_%d_%H_%M_%S)
-mkdir $RESULTS_PATH/$dt
+mkdir -p $RESULTS_PATH/$dt
 
 REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
 TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')

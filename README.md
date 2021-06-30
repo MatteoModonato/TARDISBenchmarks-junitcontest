@@ -34,9 +34,10 @@ The script computes the test suite metrics after each Evosuite run.
 Run **SushiLauncher.sh** script to run [SUSHI](https://github.com/pietrobraione/sushi) on a single program or on a multiple benchmarks. Pass the following parameter to set SUSHI configuration: 
 * number of Evosuite threads (-e)
 * number of mosa (-m)
+* Evosuite time budget (-t)
 * global time budget (-g)
 
-Eg. `bash SushiLauncher.sh -e 5 -m 10 -g 1200`
+Eg. `bash SushiLauncher.sh -e 5 -m 10 -t 300 -g 1200`
 
 The script computes the test suite metrics after each Sushi run.
 
