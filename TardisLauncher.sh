@@ -138,7 +138,7 @@ if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunAuthzforce1.java
-	for BENCHMARK in AUTHZFORCE-1 AUTHZFORCE-11 AUTHZFORCE-27 AUTHZFORCE-32 AUTHZFORCE-33 AUTHZFORCE-48 AUTHZFORCE-5 AUTHZFORCE-52 AUTHZFORCE-63 AUTHZFORCE-65
+	for BENCHMARK in AUTHZFORCE-1 AUTHZFORCE-11 AUTHZFORCE-27 AUTHZFORCE-32 AUTHZFORCE-33 AUTHZFORCE-48
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark AUTHZFORCE -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunAuthzforce1.java
@@ -173,7 +173,7 @@ if [[ " ${input_array[@]} " =~ " 3 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunBcel.java
-	for BENCHMARK in BCEL-1 BCEL-2 BCEL-3 BCEL-4 BCEL-5 BCEL-6 BCEL-7 BCEL-8 BCEL-9 BCEL-10
+	for BENCHMARK in BCEL-1 BCEL-2 BCEL-3 BCEL-4 BCEL-5 BCEL-6 BCEL-7
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark BCEL -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunBcel.java
@@ -278,7 +278,7 @@ if [[ " ${input_array[@]} " =~ " 6 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFescar.java
-	for BENCHMARK in FESCAR-1 FESCAR-12 FESCAR-18 FESCAR-23 FESCAR-25 FESCAR-36 FESCAR-37 FESCAR-41 FESCAR-42 FESCAR-7 FESCAR-2 FESCAR-5 FESCAR-6 FESCAR-8 FESCAR-9 FESCAR-10 FESCAR-13 FESCAR-15 FESCAR-17 FESCAR-28 FESCAR-32 FESCAR-33 FESCAR-34
+	for BENCHMARK in FESCAR-12 FESCAR-18 FESCAR-23 FESCAR-36 FESCAR-2 FESCAR-5 FESCAR-9 FESCAR-10 FESCAR-13 FESCAR-17 FESCAR-28 FESCAR-33 FESCAR-34
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark FESCAR -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunFescar.java
@@ -348,7 +348,7 @@ if [[ " ${input_array[@]} " =~ " 8 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGuava.java
-	for BENCHMARK in GUAVA-2 GUAVA-22 GUAVA-39 GUAVA-47 GUAVA-90 GUAVA-95 GUAVA-102 GUAVA-110 GUAVA-128 GUAVA-129 GUAVA-159 GUAVA-169 GUAVA-177 GUAVA-181 GUAVA-184 GUAVA-196 GUAVA-206 GUAVA-212 GUAVA-224 GUAVA-240
+	for BENCHMARK in GUAVA-90 GUAVA-128 GUAVA-159 GUAVA-169 GUAVA-181 GUAVA-184 GUAVA-196 GUAVA-212 GUAVA-224
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark GUAVA -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunGuava.java
@@ -558,7 +558,7 @@ if [[ " ${input_array[@]} " =~ " 14 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunOkio.java
-	for BENCHMARK in OKIO-1 OKIO-2 OKIO-3 OKIO-4 OKIO-5 OKIO-6 OKIO-7 OKIO-8 OKIO-9 OKIO-10
+	for BENCHMARK in OKIO-1 OKIO-4 OKIO-5 OKIO-6 OKIO-7 OKIO-8 OKIO-9 OKIO-10
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark OKIO -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunOkio.java
@@ -593,7 +593,7 @@ if [[ " ${input_array[@]} " =~ " 15 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunPdfbox.java
-	for BENCHMARK in PDFBOX-8 PDFBOX-22 PDFBOX-26 PDFBOX-40 PDFBOX-62 PDFBOX-83 PDFBOX-91 PDFBOX-117 PDFBOX-127 PDFBOX-130 PDFBOX-157 PDFBOX-198 PDFBOX-214 PDFBOX-220 PDFBOX-229 PDFBOX-234 PDFBOX-235 PDFBOX-265 PDFBOX-278 PDFBOX-285
+	for BENCHMARK in PDFBOX-8 PDFBOX-22 PDFBOX-26 PDFBOX-40 PDFBOX-62 PDFBOX-83 PDFBOX-91 PDFBOX-117 PDFBOX-127 PDFBOX-157 PDFBOX-214 PDFBOX-220 PDFBOX-229 PDFBOX-234 PDFBOX-235 PDFBOX-265 PDFBOX-278 PDFBOX-285
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark PDFBOX -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunPdfbox.java
@@ -663,7 +663,7 @@ if [[ " ${input_array[@]} " =~ " 17 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunSpoon.java
-	for BENCHMARK in SPOON-105 SPOON-155 SPOON-16 SPOON-169 SPOON-20 SPOON-211 SPOON-25 SPOON-253 SPOON-32 SPOON-65
+	for BENCHMARK in SPOON-105 SPOON-25 SPOON-253 SPOON-65
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark SPOON -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunSpoon.java
@@ -762,7 +762,7 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunZxing.java
-	for BENCHMARK in ZXING-1 ZXING-2 ZXING-3 ZXING-4 ZXING-5 ZXING-6 ZXING-7 ZXING-8 ZXING-9 ZXING-10
+	for BENCHMARK in ZXING-1 ZXING-2 ZXING-3 ZXING-4 ZXING-5 ZXING-7 ZXING-8 ZXING-9 ZXING-10
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark ZXING -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunZxing.java
@@ -797,7 +797,7 @@ if [[ " ${input_array[@]} " =~ " 20 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWeka.java
-	for BENCHMARK in WEKA-673 WEKA-460 WEKA-983 WEKA-741 WEKA-148 WEKA-53 WEKA-303 WEKA-1093 WEKA-1127 WEKA-128 WEKA-119 WEKA-302 WEKA-576 WEKA-631 WEKA-7 WEKA-592 WEKA-871 WEKA-79 WEKA-763 WEKA-1088 WEKA-1006 WEKA-563 WEKA-151 WEKA-143 WEKA-577
+	for BENCHMARK in WEKA-673 WEKA-460 WEKA-983 WEKA-741 WEKA-53 WEKA-303 WEKA-1127 WEKA-576 WEKA-7 WEKA-592 WEKA-871 WEKA-79 WEKA-763 WEKA-1088 WEKA-1006 WEKA-563 WEKA-151 WEKA-577
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark WEKA -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunWeka.java
@@ -832,7 +832,7 @@ if [[ " ${input_array[@]} " =~ " 21 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFastjson9th.java
-	for BENCHMARK in FASTJSON-999 FASTJSON-11 FASTJSON-17 FASTJSON-29 FASTJSON-36 FASTJSON-45 FASTJSON-49 FASTJSON-57 FASTJSON-61 FASTJSON-65 FASTJSON-72 FASTJSON-78 FASTJSON-79 FASTJSON-86 FASTJSON-94 FASTJSON-99 FASTJSON-100 FASTJSON-108 FASTJSON-113 FASTJSON-120
+	for BENCHMARK in FASTJSON-999 FASTJSON-11 FASTJSON-17 FASTJSON-29 FASTJSON-36 FASTJSON-45 FASTJSON-49 FASTJSON-57 FASTJSON-65 FASTJSON-72 FASTJSON-78 FASTJSON-79 FASTJSON-86 FASTJSON-94 FASTJSON-99 FASTJSON-100 FASTJSON-108 FASTJSON-113 FASTJSON-120
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark FASTJSON9TH -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunFastjson9th.java
@@ -867,7 +867,7 @@ if [[ " ${input_array[@]} " =~ " 22 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGuava9th.java
-	for BENCHMARK in GUAVA-108 GUAVA-134 GUAVA-71 GUAVA-273 GUAVA-46 GUAVA-11 GUAVA-999 GUAVA-998 GUAVA-200 GUAVA-237 GUAVA-254 GUAVA-192 GUAVA-231 GUAVA-96 GUAVA-267 GUAVA-232 GUAVA-227 GUAVA-156 GUAVA-82 GUAVA-118 GUAVA-61 GUAVA-199 GUAVA-226 GUAVA-213 GUAVA-148
+	for BENCHMARK in GUAVA-71 GUAVA-273 GUAVA-11 GUAVA-999 GUAVA-998 GUAVA-200 GUAVA-254 GUAVA-192 GUAVA-96 GUAVA-267 GUAVA-232 GUAVA-227 GUAVA-156 GUAVA-118 GUAVA-61 GUAVA-199 GUAVA-226 GUAVA-213 GUAVA-148
 	do
 		echo "[TARDIS LAUNCHER] Run benchmark GUAVA9TH -- Target class: $BENCHMARK"
 		sed -i "s/\(setTargetClass(\).*\();\)/\1${BENCHMARK/-/_}\2/g" RunFiles/RunGuava9th.java
