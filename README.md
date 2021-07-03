@@ -1,8 +1,15 @@
 # TARDISBenchmarks-junitcontest
 
 ### Important information:
-Make sure you edit the paths indicated in the first comment lines of **TardisLauncher.sh**, **EvosuiteLauncher.sh** and **CompileAndMove.sh** to have the repository ready to use ([TARDIS](https://github.com/pietrobraione/tardis) run files are automatically updated by scripts).
+* Make sure you edit the paths indicated in the first comment lines of **TardisLauncher.sh**, **EvosuiteLauncher.sh**, **SushiLauncher.sh** and **CompileAndMove.sh** to have the repository ready to use ([TARDIS](https://github.com/pietrobraione/tardis) run files are automatically updated by scripts).
+* Tested on Ubuntu 18.04.4 LTS.
+* Run all scripts from the root folder of this repository.
 
+Main requirements:
+* Zip (tested with Zip 3.0)
+* Unzip (tested with UnZip 6.00)
+* Java (tested with java version "1.8.0_261")
+* Maven (tested with Apache Maven 3.6.3)
 
 ### How to use the repository:
 #### UnzipAndCompile.sh

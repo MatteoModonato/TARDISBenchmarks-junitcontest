@@ -24,6 +24,7 @@ done
 echo "searchBudget: $searchBudget";
 
 echo "[EVOSUITE LAUNCHER] Choose the benchmarks to run:"
+echo "[EVOSUITE LAUNCHER] Type the number corresponding to one or more benchmarks (separated by space) and press enter"
 echo " ------------------------ "
 echo "|  1)  ALL BENCHMARKS    |"
 echo "|  2)  AUTHZFORCE        |"
@@ -54,12 +55,14 @@ input_array=($input)
 dt=$(date +%Y_%m_%d_%H_%M_%S)
 mkdir -p $RESULTS_PATH/$dt
 
+#paths manipulation to make them work with "sed s"
 REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
 TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')
 TARDIS_HOME_PATH_EVOSUITE=$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar
 TARDIS_HOME_PATH_ESC_EVOSUITE=$(echo $TARDIS_HOME_PATH_EVOSUITE | sed 's_/_\\/_g')
 EVOSUITE_PATH_ESC=$(echo $EVOSUITE_PATH | sed 's_/_\\/_g')
 
+#copy the file containing the paths for the coverage tool and insert the specific paths in the copied file
 cp -f CovarageTool/benchmarks.list CovarageTool/benchmarksRepoPath.list
 sed -i "s/REPOSITORYHOMEPATH/$REPO_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
 sed -i "s/TARDISHOMEPATH/$TARDIS_HOME_PATH_ESC/g" CovarageTool/benchmarksRepoPath.list
@@ -68,13 +71,17 @@ sed -i "s/$TARDIS_HOME_PATH_ESC_EVOSUITE/$EVOSUITE_PATH_ESC/g" CovarageTool/benc
 #Authzforce
 if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]; then
 	mkdir $RESULTS_PATH/$dt/AUTHZFORCE
+	#copy runtool to the RESULTS_PATH folder to make the coverage tool happy
 	cp -f $REPO_HOME_PATH/CovarageTool/runtool $RESULTS_PATH/$dt/AUTHZFORCE
 	for BENCHMARK in AUTHZFORCE-1 AUTHZFORCE-11 AUTHZFORCE-27 AUTHZFORCE-32 AUTHZFORCE-33 AUTHZFORCE-48 AUTHZFORCE-5 AUTHZFORCE-52 AUTHZFORCE-63 AUTHZFORCE-65
 	do
 		echo "[EVOSUITE LAUNCHER] Run benchmark AUTHZFORCE -- Target class: $BENCHMARK"
 		mkdir -p $RESULTS_PATH/$dt/AUTHZFORCE/$BENCHMARK/test
+		#extract the target class from the Tardis run file
 		inputClass=$(awk -v pat="${BENCHMARK/-/_} " '$0~pat{print $NF}' RunFiles/RunAuthzforce1.java | sed 's/\"//g;s/;//g;s/\//./g')
+		#run EvoSuite
 		java -Xmx4G -jar $EVOSUITE_PATH -class $inputClass -mem 2048 -DCP=$REPO_HOME_PATH/core-release-13.3.0/pdp-engine/target/classes:$REPO_HOME_PATH/core-release-13.3.0/dependencies/activation-1.1.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/animal-sniffer-annotations-1.14.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/authzforce-ce-core-pdp-api-15.3.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/authzforce-ce-pdp-ext-model-7.5.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/authzforce-ce-xacml-model-7.5.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/authzforce-ce-xmlns-model-7.5.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/checker-compat-qual-2.0.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/error_prone_annotations-2.1.3.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/guava-24.1.1-jre.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/hamcrest-core-1.3.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/j2objc-annotations-1.1.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/javax.mail-1.6.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/javax.mail-api-1.6.0.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/jaxb2-basics-runtime-1.11.1.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/jcl-over-slf4j-1.7.25.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/jsr305-1.3.9.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/junit-4.11.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/logback-core-1.2.3.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/Saxon-HE-9.8.0-12.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/slf4j-api-1.7.25.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/spring-core-4.3.18.RELEASE.jar:$REPO_HOME_PATH/core-release-13.3.0/dependencies/xml-resolver-1.2.jar -Dassertions=false -Dreport_dir=$RESULTS_PATH/$dt/AUTHZFORCE/$BENCHMARK -Dsearch_budget=$searchBudget -Dtest_dir=$RESULTS_PATH/$dt/AUTHZFORCE/$BENCHMARK/test -Dvirtual_fs=false -Dcriterion=BRANCH -Dinline=false -Djunit_suffix=_Test -Dno_runtime_dependency |& tee $RESULTS_PATH/$dt/AUTHZFORCE/$BENCHMARK/evosuiteLog$BENCHMARK.txt
+		#perform the coverage tool
 		java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" EVOSUITE $BENCHMARK $RESULTS_PATH/$dt/AUTHZFORCE 1 $searchBudget --only-compute-metrics $RESULTS_PATH/$dt/AUTHZFORCE/$BENCHMARK/test
 	done
 fi
