@@ -24,8 +24,9 @@ Run **TardisLauncher.sh** script to run TARDIS on a single program or on a multi
 * global time budget (-g)
 * max test case depth (-d)
 * throttle factor evosuite (-f)
+* initial test case random (-r)
 
-Eg. `bash TardisLauncher.sh -j 5 -e 10 -m 5 -t 180 -g 20 -d 25 -f 0.0f`
+Eg. `bash TardisLauncher.sh -j 5 -e 10 -m 5 -t 180 -g 20 -d 25 -f 0.0f -r Randomness.METHOD`
 
 The script computes the test suite metrics after each Tardis run.
 

@@ -38,7 +38,7 @@ public class CalculateResults {
 
 		String lastSeedLine = null;
 		String startSeedSubStringFrom = "Generated test case ";
-		String endSeedSubStringAt = ", depth: -1,";
+		String endSeedSubStringAt = ", depth: 0,";
 
 		try {
 			Scanner scanner = new Scanner(file);
@@ -46,7 +46,7 @@ public class CalculateResults {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				lineNum++;
-				if(line.contains("depth: -1")) { 
+				if(line.contains("depth: 0")) { 
 					++seedTest;
 					lastSeedLine = line;
 				}

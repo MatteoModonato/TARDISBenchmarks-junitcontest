@@ -19,7 +19,7 @@ LOG_PATH=/dev/hd2/tardisFolder/tardisLogs
 TOOLSJAR_PATH=/dev/hd2/usr/lib/jvm/jdk1.8.0_261/lib
 # -------------------------------------------------------------------------------
 
-while getopts j:e:m:t:g:d:f: flag
+while getopts j:e:m:t:g:d:f:r: flag
 do
     case "${flag}" in
         j) threadJBSE=${OPTARG};;
@@ -29,6 +29,7 @@ do
         g) globalTime=${OPTARG};;
         d) testCaseDepth=${OPTARG};;
         f) throttleFactorEvosuite=${OPTARG};;
+        r) initialTestCaseRandom=${OPTARG};;
     esac
 done
 echo "threadJBSE: $threadJBSE";
@@ -38,6 +39,7 @@ echo "evosuiteTime: $evosuiteTime";
 echo "globalTime: $globalTime";
 echo "testCaseDepth: $testCaseDepth";
 echo "throttleFactorEvosuite: $throttleFactorEvosuite";
+echo "initialTestCaseRandom: $initialTestCaseRandom";
 
 # -------------------------------------------------------------------------------
 # Editable variables:
@@ -122,7 +124,7 @@ seed_test_cov () {
 	testSubPath=$(echo ${arrTestDirs[0]} | sed 's/.*test\///g')
 	mkdir -p $1/seedTest/$testSubPath
 	for i in `seq 0 $2`; do
-		cp $1/test/$testSubPath/*_${i}_Test.java $1/seedTest/$testSubPath
+		test -f $1/test/$testSubPath/*_${i}_Test.java && cp $1/test/$testSubPath/*_${i}_Test.java $1/seedTest/$testSubPath
 	done
 	java -ea -Dsbst.benchmark.jacoco="$REPO_HOME_PATH/CovarageTool/jacocoagent.jar" -Dsbst.benchmark.java="java" -Dsbst.benchmark.javac="javac" -Dsbst.benchmark.config="$REPO_HOME_PATH/CovarageTool/benchmarksRepoPath.list" -Dsbst.benchmark.junit="$REPO_HOME_PATH/CovarageTool/junit-4.12.jar" -Dsbst.benchmark.junit.dependency="$REPO_HOME_PATH/CovarageTool/hamcrest-core-1.3.jar" -Dsbst.benchmark.pitest="$REPO_HOME_PATH/CovarageTool/pitest-1.1.11.jar:$REPO_HOME_PATH/CovarageTool/pitest-command-line-1.1.11.jar" -jar "$REPO_HOME_PATH/CovarageTool/benchmarktool-1.0.0-shaded.jar" SEEDTARDIS $3 $4 1 $5 --only-compute-metrics $1/seedTest
 }
@@ -147,6 +149,7 @@ if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunAuthzforce1.java
 	for BENCHMARK in AUTHZFORCE-1 AUTHZFORCE-11 AUTHZFORCE-27 AUTHZFORCE-32 AUTHZFORCE-33 AUTHZFORCE-48
@@ -189,6 +192,7 @@ if [[ " ${input_array[@]} " =~ " 3 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunBcel.java
 	for BENCHMARK in BCEL-1 BCEL-2 BCEL-3 BCEL-4 BCEL-5 BCEL-6 BCEL-7
@@ -224,6 +228,7 @@ if [[ " ${input_array[@]} " =~ " 4 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunDubbo.java
 	for BENCHMARK in DUBBO-2 DUBBO-3 DUBBO-4 DUBBO-5 DUBBO-6 DUBBO-7 DUBBO-8 DUBBO-9 DUBBO-10
@@ -259,6 +264,7 @@ if [[ " ${input_array[@]} " =~ " 5 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFastjson.java
 	for BENCHMARK in FASTJSON-1 FASTJSON-2 FASTJSON-3 FASTJSON-4 FASTJSON-5 FASTJSON-6 FASTJSON-7 FASTJSON-8 FASTJSON-9 FASTJSON-10
@@ -294,6 +300,7 @@ if [[ " ${input_array[@]} " =~ " 6 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFescar.java
 	for BENCHMARK in FESCAR-12 FESCAR-18 FESCAR-23 FESCAR-36 FESCAR-2 FESCAR-5 FESCAR-9 FESCAR-10 FESCAR-13 FESCAR-17 FESCAR-28 FESCAR-33 FESCAR-34
@@ -329,6 +336,7 @@ if [[ " ${input_array[@]} " =~ " 7 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGson.java
 	for BENCHMARK in GSON-1 GSON-2 GSON-3 GSON-4 GSON-5 GSON-6 GSON-7 GSON-8 GSON-9 GSON-10
@@ -364,6 +372,7 @@ if [[ " ${input_array[@]} " =~ " 8 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGuava.java
 	for BENCHMARK in GUAVA-90 GUAVA-128 GUAVA-159 GUAVA-169 GUAVA-181 GUAVA-184 GUAVA-196 GUAVA-212 GUAVA-224
@@ -399,6 +408,7 @@ if [[ " ${input_array[@]} " =~ " 9 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunImage.java
 	for BENCHMARK in IMAGE-1 IMAGE-2 IMAGE-3 IMAGE-4
@@ -434,6 +444,7 @@ if [[ " ${input_array[@]} " =~ " 10 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunJsoup.java
 	for BENCHMARK in JSOUP-1 JSOUP-2 JSOUP-3 JSOUP-4 JSOUP-5
@@ -469,6 +480,7 @@ if [[ " ${input_array[@]} " =~ " 11 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunJxpath.java
 	for BENCHMARK in JXPATH-1 JXPATH-2 JXPATH-3 JXPATH-4 JXPATH-5 JXPATH-6 JXPATH-7 JXPATH-8 JXPATH-9 JXPATH-10
@@ -504,6 +516,7 @@ if [[ " ${input_array[@]} " =~ " 12 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunLa4j.java
 	for BENCHMARK in LA4J-1 LA4J-2 LA4J-3 LA4J-4 LA4J-5 LA4J-6 LA4J-7 LA4J-8 LA4J-9 LA4J-10
@@ -539,6 +552,7 @@ if [[ " ${input_array[@]} " =~ " 13 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunOkhttp.java
 	for BENCHMARK in OKHTTP-1 OKHTTP-2 OKHTTP-3 OKHTTP-4 OKHTTP-5 OKHTTP-6 OKHTTP-7 OKHTTP-8
@@ -574,6 +588,7 @@ if [[ " ${input_array[@]} " =~ " 14 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunOkio.java
 	for BENCHMARK in OKIO-1 OKIO-4 OKIO-5 OKIO-6 OKIO-7 OKIO-8 OKIO-9 OKIO-10
@@ -609,6 +624,7 @@ if [[ " ${input_array[@]} " =~ " 15 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunPdfbox.java
 	for BENCHMARK in PDFBOX-8 PDFBOX-22 PDFBOX-26 PDFBOX-40 PDFBOX-62 PDFBOX-83 PDFBOX-91 PDFBOX-117 PDFBOX-127 PDFBOX-157 PDFBOX-214 PDFBOX-220 PDFBOX-229 PDFBOX-234 PDFBOX-235 PDFBOX-265 PDFBOX-278 PDFBOX-285
@@ -644,6 +660,7 @@ if [[ " ${input_array[@]} " =~ " 16 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunRe2j.java
 	for BENCHMARK in RE2J-1 RE2J-2 RE2J-3 RE2J-4 RE2J-5 RE2J-6 RE2J-7 RE2J-8
@@ -679,6 +696,7 @@ if [[ " ${input_array[@]} " =~ " 17 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunSpoon.java
 	for BENCHMARK in SPOON-105 SPOON-25 SPOON-253 SPOON-65
@@ -714,6 +732,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWebmagic1_5.java
 	sed -i "14s/\(Paths.get(\"\).*\(\");\)/\1$TARDIS_HOME_PATH_ESC\2/
@@ -724,6 +743,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWebmagic2_3_4.java
 	for BENCHMARK in WEBMAGIC-1 WEBMAGIC-5
@@ -778,6 +798,7 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunZxing.java
 	for BENCHMARK in ZXING-1 ZXING-2 ZXING-3 ZXING-4 ZXING-5 ZXING-7 ZXING-8 ZXING-9 ZXING-10
@@ -813,6 +834,7 @@ if [[ " ${input_array[@]} " =~ " 20 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunWeka.java
 	for BENCHMARK in WEKA-673 WEKA-460 WEKA-983 WEKA-741 WEKA-53 WEKA-303 WEKA-1127 WEKA-576 WEKA-7 WEKA-592 WEKA-871 WEKA-79 WEKA-763 WEKA-1088 WEKA-1006 WEKA-563 WEKA-151 WEKA-577
@@ -848,6 +870,7 @@ if [[ " ${input_array[@]} " =~ " 21 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunFastjson9th.java
 	for BENCHMARK in FASTJSON-999 FASTJSON-11 FASTJSON-17 FASTJSON-29 FASTJSON-36 FASTJSON-45 FASTJSON-49 FASTJSON-57 FASTJSON-65 FASTJSON-72 FASTJSON-78 FASTJSON-79 FASTJSON-86 FASTJSON-94 FASTJSON-99 FASTJSON-100 FASTJSON-108 FASTJSON-113 FASTJSON-120
@@ -883,6 +906,7 @@ if [[ " ${input_array[@]} " =~ " 22 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 			s/\(setThrottleFactorEvosuite(\).*\();\)/\1$throttleFactorEvosuite\2/g
 			s/\(setMaxTestCaseDepth(\).*\();\)/\1$testCaseDepth\2/g
 			s/\(setNumMOSATargets(\).*\();\)/\1$mosa\2/g
+			s/\(setInitialTestCaseRandom(\).*\();\)/\1$initialTestCaseRandom\2/g
 			s/\(setEvosuiteTimeBudgetDuration(\).*\();\)/\1$evosuiteTime\2/g
 			s/\(setGlobalTimeBudgetDuration(\).*\();\)/\1$globalTime\2/g" RunFiles/RunGuava9th.java
 	for BENCHMARK in GUAVA-71 GUAVA-273 GUAVA-11 GUAVA-999 GUAVA-998 GUAVA-200 GUAVA-254 GUAVA-192 GUAVA-96 GUAVA-267 GUAVA-232 GUAVA-227 GUAVA-156 GUAVA-118 GUAVA-61 GUAVA-199 GUAVA-226 GUAVA-213 GUAVA-148

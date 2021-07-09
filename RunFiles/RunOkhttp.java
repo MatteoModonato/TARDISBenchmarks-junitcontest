@@ -3,7 +3,7 @@ package settings;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
-import java.util.Arrays;
+import tardis.Randomness;
 import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.Level;
 import tardis.Main;
@@ -69,6 +69,7 @@ public class RunOkhttp {
 		o.setVerbosity(Level.ALL);
 		o.setEvosuiteNoDependency(true);
 		o.setUseIndexInfeasibility(false);
+		o.setInitialTestCaseRandom(Randomness.METHOD);
 	
 		final Main m = new Main(o);
 		m.start();
