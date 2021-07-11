@@ -175,7 +175,7 @@ if [[ " ${input_array[@]} " =~ " 2 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -211,7 +211,7 @@ if [[ " ${input_array[@]} " =~ " 3 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -247,7 +247,7 @@ if [[ " ${input_array[@]} " =~ " 4 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -283,7 +283,7 @@ if [[ " ${input_array[@]} " =~ " 5 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -319,7 +319,7 @@ if [[ " ${input_array[@]} " =~ " 6 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -355,7 +355,7 @@ if [[ " ${input_array[@]} " =~ " 7 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -391,7 +391,7 @@ if [[ " ${input_array[@]} " =~ " 8 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -427,7 +427,7 @@ if [[ " ${input_array[@]} " =~ " 9 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]];
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -463,7 +463,7 @@ if [[ " ${input_array[@]} " =~ " 10 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -499,7 +499,7 @@ if [[ " ${input_array[@]} " =~ " 11 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -535,7 +535,7 @@ if [[ " ${input_array[@]} " =~ " 12 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -571,7 +571,7 @@ if [[ " ${input_array[@]} " =~ " 13 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -607,7 +607,7 @@ if [[ " ${input_array[@]} " =~ " 14 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -643,7 +643,7 @@ if [[ " ${input_array[@]} " =~ " 15 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -679,7 +679,7 @@ if [[ " ${input_array[@]} " =~ " 16 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -715,7 +715,7 @@ if [[ " ${input_array[@]} " =~ " 17 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -762,7 +762,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 	for BENCHMARK in WEBMAGIC-2 WEBMAGIC-3 WEBMAGIC-4
@@ -781,7 +781,7 @@ if [[ " ${input_array[@]} " =~ " 18 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -817,7 +817,7 @@ if [[ " ${input_array[@]} " =~ " 19 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -853,7 +853,7 @@ if [[ " ${input_array[@]} " =~ " 20 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -889,7 +889,7 @@ if [[ " ${input_array[@]} " =~ " 21 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
@@ -925,7 +925,7 @@ if [[ " ${input_array[@]} " =~ " 22 " ]] || [[ " ${input_array[@]} " =~ " 1 " ]]
 		#Clean filesystem if necessary
 		foldersize=$(du -sm $TMPDIR | cut -f1)
 		if [[ $foldersize -gt $sizeThreshold ]]; then
-			mkdir "${TMPDIR}_lite" && cp -r $TMPDIR/test "${TMPDIR}_lite" && cp $TMPDIR/evosuite-log-seed.txt "${TMPDIR}_lite" && rm -r $TMPDIR
+			mkdir "${TMPDIR}_lite" ; cp -r $TMPDIR/test "${TMPDIR}_lite" ; rm -r $TMPDIR
 		fi
 	done
 fi
