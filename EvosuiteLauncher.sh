@@ -58,7 +58,7 @@ mkdir -p $RESULTS_PATH/$dt
 #paths manipulation to make them work with "sed s"
 REPO_HOME_PATH_ESC=$(echo $REPO_HOME_PATH | sed 's_/_\\/_g')
 TARDIS_HOME_PATH_ESC=$(echo $TARDIS_HOME_PATH | sed 's_/_\\/_g')
-TARDIS_HOME_PATH_EVOSUITE=$TARDIS_HOME_PATH/lib/evosuite-shaded-1.0.6-SNAPSHOT.jar
+TARDIS_HOME_PATH_EVOSUITE=$TARDIS_HOME_PATH/libs/evosuite-shaded-1.0.6-SNAPSHOT.jar
 TARDIS_HOME_PATH_ESC_EVOSUITE=$(echo $TARDIS_HOME_PATH_EVOSUITE | sed 's_/_\\/_g')
 EVOSUITE_PATH_ESC=$(echo $EVOSUITE_PATH | sed 's_/_\\/_g')
 
